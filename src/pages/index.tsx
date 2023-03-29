@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Header, Slider } from "@/components";
+import { Footer, Header, MovieItems, Slider, Trailers } from "@/components";
 
 export default function Home() {
   return (
@@ -23,6 +23,9 @@ export default function Home() {
       <main>
         <Header />
         <Slider />
+        <MovieItems />
+        <Trailers />
+        <Footer />
       </main>
     </>
   );
