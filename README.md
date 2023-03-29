@@ -1,4 +1,4 @@
-##Film Review NextJs App
+## Film Review NextJS App
 
 ### Getting Started
 
