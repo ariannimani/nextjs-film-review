@@ -8,6 +8,9 @@ import {
   Trailers,
   MainHead,
 } from "@/components";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setGenres } from "@/redux/slices/genresSlice";
 
 export interface Data {
   dates: Dates;
@@ -41,24 +44,55 @@ export interface Result {
   vote_count: number;
 }
 
+export interface Genres {
+  genres: Genre[];
+}
+
+export interface Genre {
+  color: string;
+  id: number;
+  name: string;
+}
+
 export const getServerSideProps: GetServerSideProps<{
   data: Data;
-}> = async () => {
-  const url =
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=b81c20b4ad589c35fcc33ec48b338339&page=1&language=en-US";
+  genres: Genres;
+}> = async (context) => {
+  const query = context.query?.value || "now_playing";
+  const url = `https://api.themoviedb.org/3/movie/${query}?api_key=b81c20b4ad589c35fcc33ec48b338339&page=1&language=en-US`;
   const res = await fetch(url);
   const data: Data = await res.json();
+
+  const urlGen = `https://api.themoviedb.org/3/genre/movie/list?api_key=b81c20b4ad589c35fcc33ec48b338339&language=en-US`;
+  const responseGen = await fetch(urlGen);
+  const genres: Genres = await responseGen.json();
+
   return {
     props: {
       data,
+      genres,
     },
   };
 };
 
 const Home = ({
   data,
+  genres,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const movies = data.results;
+  const allGenres = genres.genres;
+  // Assign a random color to each genre
+  const genresWithColors = allGenres.map((genre) => {
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    return { ...genre, color: randomColor };
+  });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setGenres(genresWithColors));
+  }, [genresWithColors, dispatch]);
+
   return (
     <>
       <MainHead />

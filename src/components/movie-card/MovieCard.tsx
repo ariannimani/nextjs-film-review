@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import { BsStarFill } from "react-icons/bs";
-
+import { useAppSelector } from "@/redux/hooks";
+import { selectGenres } from "@/redux/slices/genresSlice";
 interface MovieProps {
   id: number;
   width: number;
@@ -21,6 +22,7 @@ const MovieCard: FC<MovieProps> = ({
   width,
   height,
 }) => {
+  const genres = useAppSelector(selectGenres);
   return (
     <div className="movie-item">
       {image && (
@@ -35,11 +37,17 @@ const MovieCard: FC<MovieProps> = ({
       <div className="title-in">
         <div className="cate">
           {genre &&
-            genre.map((gen) => (
-              <span className="blue" key={gen}>
-                <a href="#">Sci-fi /{gen}</a>
-              </span>
-            ))}
+            genre.slice(0, 3).map((gen: any) => {
+              const currentGenre = genres.filter((item) => item.id === gen);
+              return (
+                <span
+                  style={{ background: currentGenre[0].color }}
+                  key={currentGenre[0].id}
+                >
+                  <a href="#">{currentGenre[0].name}</a>
+                </span>
+              );
+            })}
         </div>
         <h6>
           <a href="#">{title}</a>

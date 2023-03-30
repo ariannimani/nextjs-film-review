@@ -4302,6 +4302,8 @@ ul {
 }
 .cate {
   margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
 }
 .cate span {
   padding: 3px 5px;
