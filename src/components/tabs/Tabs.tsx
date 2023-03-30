@@ -1,54 +1,32 @@
-import React from "react";
-import { MovieCard } from "@/components";
+import React, { FC, useState } from "react";
+import { Data, fetchMovies, Result } from "@/pages/api/fetchMovies";
+import useSWR from "swr";
+import "react-multi-carousel/lib/styles.css";
+import MovieTab from "./movie-tab/MovieTab";
+import { TabProps } from "./tabMenu";
 
-const movieItems = [1, 2, 3, 4];
+interface TabsProps {
+  type: string;
+  tabs: TabProps[];
+}
+const Tabs: FC<TabsProps> = ({ type, tabs }) => {
+  const [tab, setTab] = useState("popular");
+  const query = { type: type, value: tab, page: 1 };
+  const { data, error, isLoading } = useSWR<Data, Error>(query, fetchMovies);
+  const movies: Result[] | undefined = data?.results;
 
-const Tabs = () => {
+  if (isLoading || error) return <></>;
+
   return (
     <div className="tabs">
       <ul className="tab-links">
-        <li className="active">
-          <a href="#tab1">#Popular</a>
-        </li>
-        <li>
-          <a href="#tab2"> #Coming soon</a>
-        </li>
-        <li>
-          <a href="#tab3"> #Top rated </a>
-        </li>
-        <li>
-          <a href="#tab4"> #Most reviewed</a>
-        </li>
+        {tabs.map((tab) => (
+          <li className="active" key={tab.id} onClick={() => setTab(tab.name)}>
+            <a>#{tab.name.replace(/_/g, " ")}</a>
+          </li>
+        ))}
       </ul>
-      <div className="tab-content">
-        <div id="tab1" className="tab active">
-          <div className="row">
-            <div className="slick-multiItem">
-              {movieItems.map((movie) => (
-                <MovieCard key={movie} id={movie} width={185} height={284} />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div id="tab2" className="tab">
-          <div className="row">
-            <div className="slick-multiItem">
-              {movieItems.map((movie) => (
-                <MovieCard key={movie} id={movie} width={185} height={284} />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div id="tab3" className="tab">
-          <div className="row">
-            <div className="slick-multiItem">
-              {movieItems.map((movie) => (
-                <MovieCard key={movie} id={movie} width={185} height={284} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      {movies && <MovieTab movies={movies} />}
     </div>
   );
 };

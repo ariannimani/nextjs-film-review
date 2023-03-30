@@ -1,34 +1,18 @@
 import React, { FC } from "react";
+import useSWR from "swr";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import { MovieCard } from "@/components";
-import { Result } from "@/pages";
+import { Data, fetchMovies, Result } from "@/pages/api/fetchMovies";
+import { responsive } from "@/utils/carouselConfig";
+import "react-multi-carousel/lib/styles.css";
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 4,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+const Slider = () => {
+  const query = { type: "movie", value: "now_playing", page: 1 };
+  const { data, error, isLoading } = useSWR<Data, Error>(query, fetchMovies);
+  const movies: Result[] | undefined = data?.results;
 
-interface SliderProps {
-  movies: Result[];
-}
+  if (isLoading || error) return <></>;
 
-const Slider: FC<SliderProps> = ({ movies }) => {
   return (
     <div className="slider movie-items">
       <div className="container">
@@ -62,7 +46,7 @@ const Slider: FC<SliderProps> = ({ movies }) => {
               dotListClass="custom-dot-list-style"
               itemClass="carousel-item-padding-40-px"
             >
-              {movies.map((movie) => (
+              {movies?.map((movie) => (
                 <MovieCard
                   key={movie.id}
                   id={movie.id}
