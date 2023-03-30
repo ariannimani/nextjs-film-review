@@ -1,7 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { MovieCard } from "@/components";
+import { Result } from "@/pages";
 
 const responsive = {
   superLargeDesktop: {
@@ -23,8 +24,11 @@ const responsive = {
   },
 };
 
-const movies = [1, 2, 3, 4];
-const Slider = () => {
+interface SliderProps {
+  movies: Result[];
+}
+
+const Slider: FC<SliderProps> = ({ movies }) => {
   return (
     <div className="slider movie-items">
       <div className="container">
@@ -59,7 +63,16 @@ const Slider = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {movies.map((movie) => (
-                <MovieCard key={movie} id={movie} width={285} height={437} />
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  image={movie.poster_path}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  genre={movie.genre_ids}
+                  width={285}
+                  height={437}
+                />
               ))}
             </Carousel>
           </div>

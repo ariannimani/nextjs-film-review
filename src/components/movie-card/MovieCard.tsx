@@ -6,30 +6,47 @@ interface MovieProps {
   id: number;
   width: number;
   height: number;
+  image: string;
+  title: string;
+  rating: number;
+  genre: number[];
 }
 
-const MovieCard: FC<MovieProps> = ({ id, width, height }) => {
+const MovieCard: FC<MovieProps> = ({
+  id,
+  image,
+  title,
+  rating,
+  genre,
+  width,
+  height,
+}) => {
   return (
     <div className="movie-item">
-      <Image
-        loading="lazy"
-        src={`/assets/images/uploads/slider${id}.jpg`}
-        alt=""
-        width={width}
-        height={height}
-      />
+      {image && (
+        <Image
+          loading="lazy"
+          src={`https://image.tmdb.org/t/p/w500${image}`}
+          alt={title}
+          width={width}
+          height={height}
+        />
+      )}
       <div className="title-in">
         <div className="cate">
-          <span className="blue">
-            <a href="#">Sci-fi</a>
-          </span>
+          {genre &&
+            genre.map((gen) => (
+              <span className="blue" key={gen}>
+                <a href="#">Sci-fi /{gen}</a>
+              </span>
+            ))}
         </div>
         <h6>
-          <a href="#">Interstellar</a>
+          <a href="#">{title}</a>
         </h6>
         <p>
           <BsStarFill color="#f5b50a" size={"16px"} />
-          <span>7.4</span> /10
+          <span>{rating}</span> /10
         </p>
       </div>
     </div>
