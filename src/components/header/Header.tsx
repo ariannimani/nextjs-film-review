@@ -1,8 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import { TopSearch, MenuItem } from "@/components/header";
+import Link from "next/link";
 
-const titles = ["Home", "Movies", "Celebrities", "Blog", "Profile"];
+const titles = [
+  { id: 1, name: "Home", link: "/" },
+  { id: 2, name: "Movies", link: "/movies" },
+  { id: 3, name: "Celebrities", link: "/celebrities" },
+  { id: 4, name: "Blog", link: "/blog" },
+  { id: 5, name: "Profile", link: "/profile" },
+];
 const Header = () => {
   return (
     <header className="ht-header">
@@ -22,7 +29,7 @@ const Header = () => {
                 <span></span>
               </div>
             </div>
-            <a href="#">
+            <Link href={`/`}>
               <Image
                 className="logo"
                 src="/assets/images/logo1.png"
@@ -30,7 +37,7 @@ const Header = () => {
                 width={119}
                 height={58}
               />
-            </a>
+            </Link>
           </div>
           {/* <!-- Collect the nav links, forms, and other content for toggling --> */}
           <div
@@ -42,7 +49,12 @@ const Header = () => {
                 <a href="#page-top"></a>
               </li>
               {titles.map((title) => (
-                <MenuItem key={title} title={title} />
+                <MenuItem
+                  key={title.id}
+                  id={title.id}
+                  name={title.name}
+                  link={title.link}
+                />
               ))}
             </ul>
             <ul className="nav navbar-nav flex-child-menu menu-right">

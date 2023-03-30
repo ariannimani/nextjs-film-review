@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Image from "next/image";
-import { BsStarFill } from "react-icons/bs";
+import { MovieCard } from "@/components";
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -23,6 +23,7 @@ const responsive = {
   },
 };
 
+const movies = [1, 2, 3, 4];
 const Slider = () => {
   return (
     <div className="slider movie-items">
@@ -57,98 +58,9 @@ const Slider = () => {
               dotListClass="custom-dot-list-style"
               itemClass="carousel-item-padding-40-px"
             >
-              <div className="movie-item">
-                <Image
-                  loading="lazy"
-                  src="/assets/images/uploads/slider3.jpg"
-                  alt=""
-                  width={285}
-                  height={437}
-                />
-                <div className="title-in">
-                  <div className="cate">
-                    <span className="blue">
-                      <a href="#">Sci-fi</a>
-                    </span>
-                  </div>
-                  <h6>
-                    <a href="#">Interstellar</a>
-                  </h6>
-                  <p>
-                    <BsStarFill color="#f5b50a" size={"16px"} />
-                    <span>7.4</span> /10
-                  </p>
-                </div>
-              </div>
-              <div className="movie-item">
-                <Image
-                  loading="lazy"
-                  src="/assets/images/uploads/slider1.jpg"
-                  alt=""
-                  width={285}
-                  height={437}
-                />
-                <div className="title-in">
-                  <div className="cate">
-                    <span className="blue">
-                      <a href="#">Sci-fi</a>
-                    </span>
-                  </div>
-                  <h6>
-                    <a href="#">Interstellar</a>
-                  </h6>
-                  <p>
-                    <BsStarFill color="#f5b50a" size={"16px"} />
-                    <span>7.4</span> /10
-                  </p>
-                </div>
-              </div>
-              <div className="movie-item">
-                <Image
-                  loading="lazy"
-                  src="/assets/images/uploads/slider2.jpg"
-                  alt=""
-                  width={285}
-                  height={437}
-                />
-                <div className="title-in">
-                  <div className="cate">
-                    <span className="blue">
-                      <a href="#">Sci-fi</a>
-                    </span>
-                  </div>
-                  <h6>
-                    <a href="#">Interstellar</a>
-                  </h6>
-                  <p>
-                    <BsStarFill color="#f5b50a" size={"16px"} />
-                    <span>7.4</span> /10
-                  </p>
-                </div>
-              </div>
-              <div className="movie-item">
-                <Image
-                  loading="lazy"
-                  src="/assets/images/uploads/slider4.jpg"
-                  alt=""
-                  width={285}
-                  height={437}
-                />
-                <div className="title-in">
-                  <div className="cate">
-                    <span className="blue">
-                      <a href="#">Sci-fi</a>
-                    </span>
-                  </div>
-                  <h6>
-                    <a href="#">Interstellar</a>
-                  </h6>
-                  <p>
-                    <BsStarFill color="#f5b50a" size={"16px"} />
-                    <span>7.4</span> /10
-                  </p>
-                </div>
-              </div>
+              {movies.map((movie) => (
+                <MovieCard key={movie} id={movie} width={285} height={437} />
+              ))}
             </Carousel>
           </div>
         </div>

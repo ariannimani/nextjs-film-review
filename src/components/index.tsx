@@ -3,3 +3,7 @@ export { default as Slider } from "./slider/Slider";
 export { default as MovieItems } from "./movie-items/MovieItems";
 export { default as Trailers } from "./trailers/Trailers";
 export { default as Footer } from "./footer/Footer";
+export { default as MovieCard } from "./movie-card/MovieCard";
+export { default as SideBar } from "./sidebar/SideBar";
+export { default as Tabs } from "./tabs/Tabs";
+export { default as MainHead } from "./main-head/MainHead";
