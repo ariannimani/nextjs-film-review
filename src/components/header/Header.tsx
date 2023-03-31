@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { TopSearch, MenuItem } from "@/components/header";
+import { TopSearch, MenuItem } from "@/components/header/components";
 import Link from "next/link";
 
 const titles = [

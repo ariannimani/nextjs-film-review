@@ -1,5 +1,8 @@
 import React from "react";
-import { TrailerCard, TrailerVideoCard } from "@/components/trailers";
+import {
+  TrailerCard,
+  TrailerVideoCard,
+} from "@/components/trailers/components";
 
 const Trailers = () => {
   return (

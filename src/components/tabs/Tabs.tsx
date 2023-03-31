@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { Data, fetchMovies, Result } from "@/pages/api/fetchMovies";
 import useSWR from "swr";
 import "react-multi-carousel/lib/styles.css";
-import MovieTab from "./movie-tab/MovieTab";
+import { MovieTab } from "@/components/tabs/components";
 import { TabProps } from "./tabMenu";
 
 interface TabsProps {

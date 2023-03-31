@@ -4705,6 +4705,8 @@ ul {
 }
 .topbar-filter .pagination2 {
   padding-left: 100px;
+  display: flex;
+  gap:10px
 }
 @media (max-width: 767px) {
   .topbar-filter .pagination2 {
@@ -4840,6 +4842,7 @@ ul {
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 0;
+  white-space: nowrap
 }
 @media (max-width: 767px) {
   .tabs ul.tab-links,
@@ -5300,6 +5303,8 @@ ul {
   color: #abb7c4;
   font-weight: 300;
   text-transform: none;
+  display: flex;
+  align-items: center;
 }
 .blog-item-style-1 {
   display: flex;
@@ -5952,7 +5957,7 @@ ul {
 }
 .page-single {
   background-color: #020d18;
-  padding: 75px 0;
+  padding: 250px 0 75px 0;
 }
 .social-btn {
   margin-bottom: 40px;
@@ -6051,9 +6056,6 @@ ul {
   -moz-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-}
-.movie-single {
-  margin-top: -415px;
 }
 .movie-single .movie-img,
 .movie-single .mv-ceb {
@@ -6219,6 +6221,10 @@ ul {
   -moz-border-radius: 30px;
   border-radius: 30px;
 }
+.review,
+.cast,
+.media,
+.related-movies{padding: 0 15px}
 .movie-single .movie-single-ct .tab.review .mv-user-review-item {
   border-bottom: 1px solid #233a50;
   padding: 20px 20px 20px 0;
@@ -8429,4 +8435,7 @@ footer.full-width-ft .ft-copyright {
   color: #8c9296;
   font-family: "Dosis", sans-serif;
   font-weight: 700;
+}
+.cursor-class{
+  cursor: pointer;
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BsStarFill } from "react-icons/bs";
 import { useAppSelector } from "@/redux/hooks";
 import { selectGenres } from "@/redux/slices/genresSlice";
+import Link from "next/link";
 interface MovieProps {
   id: number;
   width: number;
@@ -26,16 +27,23 @@ const MovieCard: FC<MovieProps> = ({
 }) => {
   const genres = useAppSelector(selectGenres);
   return (
-    <div className="movie-item">
-      <div className="mv-img">
-        {image && (
-          <Image
-            loading="lazy"
-            src={`https://image.tmdb.org/t/p/w500${image}`}
-            alt={title}
-            width={width}
-            height={height}
-          />
+    <Link href={`/movies/${id}`}>
+      <div className="movie-item">
+        <div className="mv-img">
+          {image && (
+            <Image
+              loading="lazy"
+              src={`https://image.tmdb.org/t/p/w500${image}`}
+              alt={title}
+              width={width}
+              height={height}
+            />
+          )}
+        </div>
+        {tab && (
+          <div className="hvr-inner">
+            <a href="moviesingle.html">Read more</a>
+          </div>
         )}
         <div className="title-in">
           {!tab && (
@@ -62,8 +70,9 @@ const MovieCard: FC<MovieProps> = ({
             <span>{rating}</span> /10
           </p>
         </div>
+        {/* </div> */}
       </div>
-    </div>
+    </Link>
   );
 };
 
