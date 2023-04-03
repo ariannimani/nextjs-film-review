@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   TrailerCard,
   TrailerVideoCard,
 } from "@/components/trailers/components";
+import { useSelector } from "react-redux";
+import { selectTrailers } from "@/redux/slices/trailersSlice";
 
 const Trailers = () => {
+  const [selectedVideo, setSelectedVideo] = useState("");
+  const trailers = useSelector(selectTrailers);
+
+  useEffect(() => {
+    trailers && setSelectedVideo(trailers[0].key);
+  }, [trailers]);
+
   return (
     <div className="trailers">
       <div className="container">
@@ -18,10 +27,18 @@ const Trailers = () => {
             </div>
             <div className="videos">
               <div className="slider-for-2 video-ft">
-                <TrailerVideoCard />
+                <TrailerVideoCard videoId={selectedVideo} />
               </div>
               <div className="slider-nav-2 thumb-ft">
-                <TrailerCard />
+                {trailers &&
+                  trailers.map((trailer: any) => (
+                    <TrailerCard
+                      key={trailer.id}
+                      name={trailer.name}
+                      id={trailer.key}
+                      setSelectedVideo={setSelectedVideo}
+                    />
+                  ))}
               </div>
             </div>
           </div>

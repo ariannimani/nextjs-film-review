@@ -1,13 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
+import ReactPlayer from "react-player";
 
-const TrailerVideoCard = () => {
+interface TrailerVideoCardP {
+  videoId: string | undefined;
+}
+const TrailerVideoCard: FC<TrailerVideoCardP> = ({ videoId }) => {
   return (
     <div>
-      <iframe
-        className="item-video"
-        src="#"
-        data-src="https://www.youtube.com/embed/1Q8fG0TtVAY"
-      ></iframe>
+      <ReactPlayer url={`https://www.youtube.com/watch?v=${videoId}`} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ videoId }) => {
     <div className="vd-it">
       <Image
         className="vd-img"
-        src="/assets/images/trailer.png"
+        src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
         alt=""
         width={100}
         height={100}

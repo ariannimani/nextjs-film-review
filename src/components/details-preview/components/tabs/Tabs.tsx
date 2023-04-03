@@ -23,7 +23,7 @@ interface MovieTabsProps {
   related: Data;
 }
 
-const MovieTabs: FC<MovieTabsProps> = ({
+const Tabs: FC<MovieTabsProps> = ({
   movie,
   videos,
   credits,
@@ -92,4 +92,4 @@ const MovieTabs: FC<MovieTabsProps> = ({
   );
 };
 
-export default MovieTabs;
+export default Tabs;

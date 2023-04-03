@@ -1,12 +1,11 @@
 import React, { FC } from "react";
-import { VideoProps } from "@/components/movie/types";
+import { VideoProps } from "@/components/details-preview/types";
 import { VideoItem } from "./component";
 
 interface MediaTabProps {
   videos: VideoProps[];
 }
 const MediaTab: FC<MediaTabProps> = ({ videos }) => {
-  console.log({ videos });
   return (
     <div id="media" className="tab media active">
       <div className="row">

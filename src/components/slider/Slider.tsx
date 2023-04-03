@@ -1,18 +1,32 @@
-import React, { FC } from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
 import Carousel from "react-multi-carousel";
 import { MainCard } from "@/components";
 import { Data, fetchData, Result } from "@/pages/api/fetchData";
 import { responsive } from "@/utils/carouselConfig";
 import "react-multi-carousel/lib/styles.css";
+import { useDispatch } from "react-redux";
+import { setTrailers } from "@/redux/slices/trailersSlice";
 
 const Slider = () => {
   const query = { type: "movie", value: "now_playing", page: 1 };
   const { data, error, isLoading } = useSWR<Data, Error>(query, fetchData);
-  const movies: Result[] | undefined = data?.results;
+  const movies: Result[] | undefined = data && data.results;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    movies &&
+      movies.forEach(async (movie) => {
+        //FIXME: fix any type
+        const trailers: any = await fetchData({
+          type: "movie",
+          value: `${movie.id}/videos`,
+        });
+        trailers && dispatch(setTrailers(trailers.results[0]));
+      });
+  }, [dispatch, movies]);
 
   if (isLoading || error) return <></>;
-
   return (
     <div className="slider movie-items">
       <div className="container">
