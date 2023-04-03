@@ -1,1 +1,1 @@
-export { default as MovieTab } from "./movie-tab/MovieTab";
+export { default as Tab } from "./tab/Tab";

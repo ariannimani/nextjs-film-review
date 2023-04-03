@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { FC } from "react";
 
 interface SidebarCardProps {
@@ -11,8 +12,8 @@ interface SidebarCardProps {
 const SidebarCard: FC<SidebarCardProps> = ({ id, name, job, image }) => {
   const works_as = job === "Acting" ? "Actor" : "Director";
   return (
-    <div className="celeb-item">
-      <a href="#">
+    <Link href={`/celebrities/${id}`}>
+      <div className="celeb-item">
         {image && (
           <Image
             loading="lazy"
@@ -22,14 +23,15 @@ const SidebarCard: FC<SidebarCardProps> = ({ id, name, job, image }) => {
             height={70}
           />
         )}
-      </a>
-      <div className="celeb-author">
-        <h6>
-          <a href="#">{name}</a>
-        </h6>
-        <span>{works_as}</span>
+
+        <div className="celeb-author">
+          <h6>
+            <a>{name}</a>
+          </h6>
+          <span>{works_as}</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

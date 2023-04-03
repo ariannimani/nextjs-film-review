@@ -2,7 +2,7 @@ import { capitalizeFirstLetter } from "@/utils";
 import React, { FC } from "react";
 import SelectInput from "./select-input/SelectInput";
 import DoubleSelectInput from "./double-select-input/DoubleSelectInput";
-import { fetchMovies } from "@/pages/api/fetchMovies";
+import { fetchData } from "@/pages/api/fetchData";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface SearchFormProps {

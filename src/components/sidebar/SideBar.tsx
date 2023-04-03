@@ -1,12 +1,12 @@
-import Image from "next/image";
 import React from "react";
 import useSWR from "swr";
 import { SidebarCard } from "@/components/sidebar/components";
-import { Data, fetchMovies, Result } from "@/pages/api/fetchMovies";
+import { Data, fetchData } from "@/pages/api/fetchData";
+import Link from "next/link";
 
 const SideBar = () => {
   const query = { type: "person", value: "popular", page: 1 };
-  const { data, error, isLoading } = useSWR<Data, Error>(query, fetchMovies);
+  const { data, error, isLoading } = useSWR<Data, Error>(query, fetchData);
   const celebrities: any = data?.results;
 
   if (isLoading || error) return <></>;
@@ -26,9 +26,9 @@ const SideBar = () => {
             />
           ))}
 
-          <a href="#" className="btn">
+          <Link href="/celebrities" className="btn">
             See all celebrities<i className="ion-ios-arrow-right"></i>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

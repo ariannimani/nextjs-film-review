@@ -1,14 +1,14 @@
-import { FilterBar, Footer, Header, MovieItem, SearchForm } from "@/components";
-import { Pagination } from "@/components/movie/components/movie-tabs/components";
+import { FilterBar, Footer, Header, Card, SearchForm } from "@/components";
+import { Pagination } from "@/components";
 import React, { useState } from "react";
-import { fetchMovies } from "../api/fetchMovies";
+import { fetchData } from "../api/fetchData";
 import { InferGetServerSidePropsType } from "next";
 import { useSelector } from "react-redux";
 import { selectGenres } from "@/redux/slices/genresSlice";
 
 export async function getServerSideProps() {
   const queryMovie = { type: "movie", value: "popular" };
-  const data = await fetchMovies(queryMovie);
+  const data = await fetchData(queryMovie);
 
   return {
     props: {
@@ -37,12 +37,13 @@ const Movies = ({
               <FilterBar total={data.total_results} title={"movies"} />
               <div className="flex-wrap-movielist">
                 {movies.map((movie) => (
-                  <MovieItem
+                  <Card
                     key={movie.id}
                     id={movie.id}
                     title={movie.title}
                     rating={movie.vote_average}
                     image={movie.poster_path}
+                    category="movies"
                   />
                 ))}
               </div>

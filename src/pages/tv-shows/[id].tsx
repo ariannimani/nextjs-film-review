@@ -5,15 +5,15 @@ import { fetchData } from "@/pages/api/fetchData";
 
 export async function getServerSideProps(context: { query: { id: any } }) {
   const { id } = context.query;
-  const queryMovie = { type: "movie", value: id };
+  const queryMovie = { type: "tv", value: id };
   const movie = await fetchData(queryMovie);
-  const queryCredits = { type: "movie", value: `${id}/credits` };
+  const queryCredits = { type: "tv", value: `${id}/credits` };
   const credits = await fetchData(queryCredits);
-  const queryReviews = { type: "movie", value: `${id}/reviews` };
+  const queryReviews = { type: "tv", value: `${id}/reviews` };
   const reviews = await fetchData(queryReviews);
-  const queryVideos = { type: "movie", value: `${id}/videos` };
+  const queryVideos = { type: "tv", value: `${id}/videos` };
   const videos = await fetchData(queryVideos);
-  const queryRelated = { type: "movie", value: `${id}/similar` };
+  const queryRelated = { type: "tv", value: `${id}/similar` };
   const related = await fetchData(queryRelated);
 
   return {
@@ -27,7 +27,7 @@ export async function getServerSideProps(context: { query: { id: any } }) {
   };
 }
 
-const MovieSingle = ({ movie, credits, reviews, videos, related }: any) => {
+const TvShows = ({ movie, credits, reviews, videos, related }: any) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -46,4 +46,4 @@ const MovieSingle = ({ movie, credits, reviews, videos, related }: any) => {
   );
 };
 
-export default MovieSingle;
+export default TvShows;

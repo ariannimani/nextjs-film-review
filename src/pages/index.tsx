@@ -3,7 +3,7 @@ import { InferGetServerSidePropsType } from "next";
 import {
   Footer,
   Header,
-  MovieItems,
+  Items,
   Slider,
   Trailers,
   MainHead,
@@ -84,7 +84,7 @@ const Home = ({
       <main>
         <Header />
         <Slider />
-        <MovieItems />
+        <Items />
         <Trailers />
         <Footer />
       </main>

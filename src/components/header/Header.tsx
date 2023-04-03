@@ -6,9 +6,10 @@ import Link from "next/link";
 const titles = [
   { id: 1, name: "Home", link: "/" },
   { id: 2, name: "Movies", link: "/movies" },
-  { id: 3, name: "Celebrities", link: "/celebrities" },
-  { id: 4, name: "Blog", link: "/blog" },
-  { id: 5, name: "Profile", link: "/profile" },
+  { id: 3, name: "Tv Shows", link: "/tv-shows" },
+  { id: 4, name: "Celebrities", link: "/celebrities" },
+  { id: 5, name: "Blog", link: "/blog" },
+  { id: 6, name: "Profile", link: "/profile" },
 ];
 const Header = () => {
   return (

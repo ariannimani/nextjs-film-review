@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
-import { Data, fetchMovies, Result } from "@/pages/api/fetchMovies";
+import { Data, fetchData, Result } from "@/pages/api/fetchData";
 import useSWR from "swr";
 import "react-multi-carousel/lib/styles.css";
-import { MovieTab } from "@/components/tabs/components";
+import { Tab } from "@/components/tabs/components";
 import { TabProps } from "./tabMenu";
 
 interface TabsProps {
@@ -12,7 +12,7 @@ interface TabsProps {
 const Tabs: FC<TabsProps> = ({ type, tabs }) => {
   const [tab, setTab] = useState("popular");
   const query = { type: type, value: tab, page: 1 };
-  const { data, error, isLoading } = useSWR<Data, Error>(query, fetchMovies);
+  const { data, error, isLoading } = useSWR<Data, Error>(query, fetchData);
   const movies: Result[] | undefined = data?.results;
 
   if (isLoading || error) return <></>;
@@ -26,7 +26,7 @@ const Tabs: FC<TabsProps> = ({ type, tabs }) => {
           </li>
         ))}
       </ul>
-      {movies && <MovieTab movies={movies} />}
+      {movies && <Tab movies={movies} />}
     </div>
   );
 };
