@@ -3,20 +3,20 @@ import { VideoProps } from "@/components/details-preview/types";
 import { VideoItem } from "./component";
 
 interface MediaTabProps {
-  videos: VideoProps[];
+  data: VideoProps[];
 }
-const MediaTab: FC<MediaTabProps> = ({ videos }) => {
+const MediaTab: FC<MediaTabProps> = ({ data }) => {
   return (
     <div id="media" className="tab media active">
       <div className="row">
         <div className="rv-hd"></div>
         <div className="title-hd-sm">
           <h4>
-            Videos <span>({videos.length})</span>
+            Videos <span>({data.length})</span>
           </h4>
         </div>
         <div className="mvsingle-item media-item">
-          {videos.map((video) => (
+          {data.map((video) => (
             <VideoItem key={video.id} name={video.name} videoId={video.key} />
           ))}
         </div>

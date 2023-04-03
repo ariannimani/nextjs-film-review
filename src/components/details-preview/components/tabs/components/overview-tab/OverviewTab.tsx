@@ -3,33 +3,20 @@ import Image from "next/image";
 import { BsArrowRightShort } from "react-icons/bs";
 import VideoPlayer from "@/components/video-player/VideoPlayer";
 import { Review, Sidebar } from "../../..";
-import {
-  CreditsProps,
-  MovieData,
-  ReviewResult,
-  VideoProps,
-} from "@/components/details-preview/types";
 import Link from "next/link";
+import { OverviewTabContent } from "./types";
 
 interface OverviewTabProps {
-  movie: MovieData;
-  reviews: ReviewResult;
-  credits: CreditsProps;
-  videos: VideoProps[];
+  data: OverviewTabContent;
   setActiveTab: any;
 }
-const OverviewTab: FC<OverviewTabProps> = ({
-  movie,
-  reviews,
-  videos,
-  credits,
-  setActiveTab,
-}) => {
+
+const OverviewTab: FC<OverviewTabProps> = ({ data, setActiveTab }) => {
   return (
     <div id="overview" className="tab active">
       <div className="row">
         <div className="col-md-8 col-sm-12 col-xs-12">
-          <p>{movie.overview}</p>
+          <p>{data.movie.overview}</p>
           <div className="title-hd-sm">
             <h4>Videos & Photos</h4>
             {/* {videos.length > 4 && ( */}
@@ -37,13 +24,13 @@ const OverviewTab: FC<OverviewTabProps> = ({
               onClick={() => setActiveTab("media")}
               className="time cursor-class"
             >
-              All {videos.length} Videos
+              All {data.videos.length} Videos
               <BsArrowRightShort />
             </a>
             {/* )} */}
           </div>
           <div className="mvsingle-item ov-item">
-            {videos.slice(0, 4).map((video) => (
+            {data.videos.slice(0, 4).map((video) => (
               <VideoPlayer key={video.id} videoId={video.key} />
             ))}
           </div>
@@ -56,8 +43,8 @@ const OverviewTab: FC<OverviewTabProps> = ({
               Full Cast & Crew <BsArrowRightShort />
             </a>
           </div>
-          {credits &&
-            credits?.cast.slice(0, 8).map((cast) => (
+          {data.credits &&
+            data.credits?.cast.slice(0, 8).map((cast) => (
               <div className="mvcast-item" key={cast.id}>
                 <div className="cast-it">
                   <div className="cast-left">
@@ -86,7 +73,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
             </a>
           </div>
 
-          {reviews.results.slice(0, 1).map((review) => (
+          {data.reviews.results.slice(0, 1).map((review) => (
             <Review
               key={review.id}
               author={review.author}
@@ -95,7 +82,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
             />
           ))}
         </div>
-        <Sidebar credits={credits} movie={movie} />
+        <Sidebar credits={data.credits} movie={data.movie} />
       </div>
     </div>
   );

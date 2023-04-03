@@ -1,91 +1,54 @@
-import { Data } from "@/pages/api/fetchData";
 import React, { FC, useState } from "react";
-import {
-  CreditsProps,
-  MovieData,
-  ReviewProps,
-  ReviewResult,
-  VideoProps,
-} from "../../types";
-import {
-  CastCrewTab,
-  MediaTab,
-  OverviewTab,
-  RelatedTab,
-  ReviewsTab,
-} from "./components";
 
-interface MovieTabsProps {
-  movie: MovieData;
-  videos: VideoProps[];
-  credits: CreditsProps;
-  reviews: ReviewResult;
-  related: Data;
+export interface TabsProps {
+  value: string;
+  label: string;
 }
 
-const Tabs: FC<MovieTabsProps> = ({
-  movie,
-  videos,
-  credits,
-  reviews,
-  related,
-}) => {
-  const [activeTab, setActiveTab] = useState("overview");
+export interface TabContent {
+  tabValue: string;
+  component: React.FC<any>;
+  //FIXME: fix any type
+  data: any;
+}
+
+interface MovieTabsProps {
+  tabs: TabsProps[];
+  tabContents: TabContent[];
+}
+
+const Tabs: FC<MovieTabsProps> = ({ tabs, tabContents }) => {
+  const [activeTab, setActiveTab] = useState(tabs[0].value);
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
 
+  const activeTabContent = tabContents.find((tc) => tc.tabValue === activeTab);
+
+  if (!activeTabContent) {
+    throw new Error(`No tab content found for ${activeTab} tab`);
+  }
+
+  const ActiveTabComponent = activeTabContent.component;
+
   return (
     <div className="movie-tabs">
       <div className="tabs">
         <ul className="tab-links tabs-mv">
-          <li
-            className={`cursor-class ${
-              activeTab === "overview" ? "active" : ""
-            }`}
-          >
-            <a onClick={() => handleTabClick("overview")}>Overview</a>
-          </li>
-          <li
-            className={`cursor-class ${
-              activeTab === "reviews" ? "active" : ""
-            }`}
-          >
-            <a onClick={() => handleTabClick("reviews")}> Reviews</a>
-          </li>
-          <li
-            className={`cursor-class ${
-              activeTab === "cast-crew" ? "active" : ""
-            }`}
-          >
-            <a onClick={() => handleTabClick("cast-crew")}> Cast & Crew </a>
-          </li>
-          <li
-            className={`cursor-class ${activeTab === "media" ? "active" : ""}`}
-          >
-            <a onClick={() => handleTabClick("media")}> Media</a>
-          </li>
-          <li
-            className={`cursor-class ${
-              activeTab === "movies-related" ? "active" : ""
-            }`}
-          >
-            <a onClick={() => handleTabClick("movies-related")}>
-              Related Movies
-            </a>
-          </li>
+          {tabs.map((tab) => (
+            <li
+              className={`cursor-class ${
+                activeTab === tab.value ? "active" : ""
+              }`}
+              key={tab.value}
+            >
+              <a onClick={() => handleTabClick(tab.value)}>{tab.label}</a>
+            </li>
+          ))}
         </ul>
         <div className="tab-content">
-          {activeTab === "overview" && (
-            <OverviewTab
-              {...{ videos, reviews, credits, movie, setActiveTab }}
-            />
-          )}
-          {activeTab === "reviews" && <ReviewsTab {...{ reviews }} />}
-          {activeTab === "cast-crew" && <CastCrewTab {...{ credits }} />}
-          {activeTab === "media" && <MediaTab {...{ videos }} />}
-          {activeTab === "movies-related" && <RelatedTab {...{ related }} />}
+          <ActiveTabComponent {...{ data: activeTabContent.data }} />
         </div>
       </div>
     </div>

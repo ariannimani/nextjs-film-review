@@ -1,21 +1,21 @@
 import { Data, Result } from "@/pages/api/fetchData";
 import React, { FC, useState } from "react";
 import Pagination from "../../../../../pagination/Pagination";
-import TopBarFilter from "../top-bar-filter/TopBarFilter";
+import { TopBarFilter } from "@/components";
 import { Related } from "./components";
 
 interface RelatedTabProps {
-  related: Data;
+  data: Data;
 }
 
-const RelatedTab: FC<RelatedTabProps> = ({ related }) => {
+const RelatedTab: FC<RelatedTabProps> = ({ data }) => {
   const [movieNumber, setMovieNumber] = useState(5);
-  const selectedMovies: Result[] = related.results.slice(0, movieNumber);
-
+  const selectedMovies: Result[] = data.results.slice(0, movieNumber);
+  console.log({ data });
   return (
     <div id="moviesrelated" className="tab related-movies active">
       <div className="row">
-        <TopBarFilter total={related.total_results} title="movies" />
+        <TopBarFilter total={data.total_results} title="movies" />
         {selectedMovies.map((movie) => (
           <Related
             id={movie.id}
@@ -29,9 +29,9 @@ const RelatedTab: FC<RelatedTabProps> = ({ related }) => {
           />
         ))}
         <Pagination
-          page={related.page}
+          page={data.page}
           title={"Movies"}
-          total_pages={related.total_pages}
+          total_pages={data.total_pages}
           perPageNumber={movieNumber}
           setPerPageNumber={setMovieNumber}
         />

@@ -3,20 +3,18 @@ import { CastCrewPerson } from "./components";
 import { CreditsProps } from "@/components/details-preview/types";
 
 interface CastCreditTabProps {
-  credits: CreditsProps;
+  data: CreditsProps;
 }
-const CastCrewTab: FC<CastCreditTabProps> = ({ credits }) => {
-  const directors = credits.crew.filter(
-    (director) => director.job === "Director"
-  );
+const CastCrewTab: FC<CastCreditTabProps> = ({ data }) => {
+  const directors = data.crew.filter((director) => director.job === "Director");
 
-  const directorsAndCreditWriters = credits.crew.filter(
+  const directorsAndCreditWriters = data.crew.filter(
     (member) =>
       member.department === "Directing" &&
       !directors.some((director) => member.id === director.id)
   );
 
-  const producers = credits.crew.filter(
+  const producers = data.crew.filter(
     (director) => director.known_for_department === "Production"
   );
 
@@ -50,7 +48,7 @@ const CastCrewTab: FC<CastCreditTabProps> = ({ credits }) => {
         <div className="title-hd-sm">
           <h4>Cast</h4>
         </div>
-        {credits.cast.map((cast) => (
+        {data.cast.map((cast) => (
           <CastCrewPerson
             key={cast.id}
             id={cast.id}

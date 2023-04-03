@@ -5,6 +5,13 @@ import { BsPlayFill, BsStarFill, BsTicketPerforated } from "react-icons/bs";
 import { Tabs } from "./components";
 import { Data } from "@/pages/api/fetchData";
 import { getYearFromDate } from "@/utils";
+import {
+  CastCrewTab,
+  MediaTab,
+  OverviewTab,
+  RelatedTab,
+  ReviewsTab,
+} from "./components/tabs/components";
 
 interface DetailsProps {
   movie: MovieData;
@@ -21,7 +28,42 @@ const Details: FC<DetailsProps> = ({
   videos,
   related,
 }) => {
-  console.log({ movie });
+  const tabs = [
+    { value: "overview", label: "Overview" },
+    { value: "reviews", label: "Reviews" },
+    { value: "cast-crew", label: "CastCrew" },
+    { value: "media", label: "Media" },
+    { value: "related", label: "Related" },
+  ];
+
+  const tabContents = [
+    {
+      tabValue: "overview",
+      component: OverviewTab,
+      data: { movie, reviews, credits, videos },
+    },
+    {
+      tabValue: "reviews",
+      component: ReviewsTab,
+      data: reviews,
+    },
+    {
+      tabValue: "cast-crew",
+      component: CastCrewTab,
+      data: credits,
+    },
+    {
+      tabValue: "media",
+      component: MediaTab,
+      data: videos,
+    },
+    {
+      tabValue: "related",
+      component: RelatedTab,
+      data: related,
+    },
+  ];
+
   return (
     <div className="page-single movie-single movie_single">
       <div className="container">
@@ -90,13 +132,7 @@ const Details: FC<DetailsProps> = ({
                   ))}
                 </div>
               </div>
-              <Tabs
-                movie={movie}
-                videos={videos}
-                credits={credits}
-                reviews={reviews}
-                related={related}
-              />
+              <Tabs tabs={tabs} tabContents={tabContents} />
             </div>
           </div>
         </div>

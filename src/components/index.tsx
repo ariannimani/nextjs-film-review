@@ -14,3 +14,4 @@ export { default as Card } from "./card/Card";
 export { default as FilterBar } from "./filter-bar/FilterBar";
 export { default as DetailsPreview } from "./details-preview/DetailsPreview";
 export { default as Pagination } from "./pagination/Pagination";
+export { default as TopBarFilter } from "./top-bar-filter/TopBarFilter";

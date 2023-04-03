@@ -1,16 +1,16 @@
 import React, { FC, useState } from "react";
 import { ReviewProps, ReviewResult } from "@/components/details-preview/types";
 import Review from "../../../review/Review";
-import TopBarFilter from "../top-bar-filter/TopBarFilter";
+import { TopBarFilter } from "@/components";
 import Pagination from "../../../../../pagination/Pagination";
 
 interface ReviewsTabProps {
-  reviews: ReviewResult;
+  data: ReviewResult;
 }
 
-const ReviewsTab: FC<ReviewsTabProps> = ({ reviews }) => {
+const ReviewsTab: FC<ReviewsTabProps> = ({ data }) => {
   const [reviewNumber, setReviewNumber] = useState(5);
-  const selectedReviews: ReviewProps[] = reviews.results.slice(0, reviewNumber);
+  const selectedReviews: ReviewProps[] = data.results.slice(0, reviewNumber);
 
   return (
     <div id="reviews" className="tab review active">
@@ -21,7 +21,7 @@ const ReviewsTab: FC<ReviewsTabProps> = ({ reviews }) => {
             Write Review
           </a>
         </div>
-        <TopBarFilter total={reviews.total_results} title="reviews" />
+        <TopBarFilter total={data.total_results} title="reviews" />
 
         {selectedReviews.map((review) => (
           <Review
@@ -32,9 +32,9 @@ const ReviewsTab: FC<ReviewsTabProps> = ({ reviews }) => {
           />
         ))}
         <Pagination
-          page={reviews.page}
+          page={data.page}
           title={"Reviews"}
-          total_pages={reviews.total_pages}
+          total_pages={data.total_pages}
           perPageNumber={reviewNumber}
           setPerPageNumber={setReviewNumber}
         />
