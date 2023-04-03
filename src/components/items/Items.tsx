@@ -15,14 +15,14 @@ const Items = () => {
                 View all <i className="ion-ios-arrow-right"></i>
               </Link>
             </div>
-            <Tabs type="movie" tabs={tabsMovies} />
+            <Tabs type="movie" tabs={tabsMovies} category="movies" />
             <div className="title-hd">
               <h2>TV Shows</h2>
               <Link href="/tv-shows" className="viewall">
                 View all <i className="ion-ios-arrow-right"></i>
               </Link>
             </div>
-            <Tabs type="tv" tabs={tabsTVShows} />
+            <Tabs type="tv" tabs={tabsTVShows} category="tv-shows" />
           </div>
           <SideBar />
         </div>

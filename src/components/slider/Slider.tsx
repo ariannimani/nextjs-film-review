@@ -54,6 +54,7 @@ const Slider = () => {
                   genre={movie.genre_ids}
                   width={285}
                   height={437}
+                  category="movies"
                 />
               ))}
             </Carousel>

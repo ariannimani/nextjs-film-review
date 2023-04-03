@@ -21,6 +21,7 @@ const Details: FC<DetailsProps> = ({
   videos,
   related,
 }) => {
+  console.log({ movie });
   return (
     <div className="page-single movie-single movie_single">
       <div className="container">

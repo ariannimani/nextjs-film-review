@@ -6,9 +6,10 @@ import { Result } from "@/pages/api/fetchData";
 
 interface Movies {
   movies: Result[];
+  category: string;
 }
 
-const Tab: FC<Movies> = ({ movies }) => {
+const Tab: FC<Movies> = ({ movies, category }) => {
   return (
     <div className="tab-content">
       <div id="tab1" className="tab active">
@@ -37,6 +38,7 @@ const Tab: FC<Movies> = ({ movies }) => {
                 tab={true}
                 width={185}
                 height={284}
+                category={category}
               />
             ))}
           </Carousel>

@@ -8,8 +8,9 @@ import { TabProps } from "./tabMenu";
 interface TabsProps {
   type: string;
   tabs: TabProps[];
+  category: string;
 }
-const Tabs: FC<TabsProps> = ({ type, tabs }) => {
+const Tabs: FC<TabsProps> = ({ type, tabs, category }) => {
   const [tab, setTab] = useState("popular");
   const query = { type: type, value: tab, page: 1 };
   const { data, error, isLoading } = useSWR<Data, Error>(query, fetchData);
@@ -26,7 +27,7 @@ const Tabs: FC<TabsProps> = ({ type, tabs }) => {
           </li>
         ))}
       </ul>
-      {movies && <Tab movies={movies} />}
+      {movies && <Tab movies={movies} category={category} />}
     </div>
   );
 };

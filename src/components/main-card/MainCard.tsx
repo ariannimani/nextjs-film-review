@@ -13,6 +13,7 @@ interface MainCardProps {
   rating: number;
   genre: number[];
   tab?: boolean;
+  category: string;
 }
 
 const MainCard: FC<MainCardProps> = ({
@@ -24,10 +25,11 @@ const MainCard: FC<MainCardProps> = ({
   width,
   height,
   tab,
+  category,
 }) => {
   const genres = useAppSelector(selectGenres);
   return (
-    <Link href={`/movies/${id}`}>
+    <Link href={`/${category}/${id}`}>
       <div className="movie-item">
         <div className="mv-img">
           {image && (
@@ -42,7 +44,7 @@ const MainCard: FC<MainCardProps> = ({
         </div>
         {tab && (
           <div className="hvr-inner">
-            <a href="moviesingle.html">Read more</a>
+            <a>Read more</a>
           </div>
         )}
         <div className="title-in">

@@ -11,7 +11,7 @@ const Trailers = () => {
   const trailers = useSelector(selectTrailers);
 
   useEffect(() => {
-    trailers && setSelectedVideo(trailers[0].key);
+    trailers && setSelectedVideo(trailers[0]?.key);
   }, [trailers]);
 
   return (

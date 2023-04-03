@@ -61,7 +61,7 @@ const Related: FC<RelatedProps> = ({
                   const currentGenre = allGenres.filter(
                     (item) => item.id === gen
                   );
-                  console.log({ currentGenre });
+
                   return (
                     <span
                       style={{ background: currentGenre[0]?.color }}

@@ -26,7 +26,7 @@ const TvShows = ({
   //FIXME: fix any type
   const ratingRange: any[] = [];
   const releaseYears = ["2011", "2022"];
-  console.log(genres);
+
   return (
     <>
       <Header />

@@ -11,7 +11,7 @@ interface RelatedTabProps {
 const RelatedTab: FC<RelatedTabProps> = ({ related }) => {
   const [movieNumber, setMovieNumber] = useState(5);
   const selectedMovies: Result[] = related.results.slice(0, movieNumber);
-  console.log({ related });
+
   return (
     <div id="moviesrelated" className="tab related-movies active">
       <div className="row">
