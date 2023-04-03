@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { FC } from "react";
 import { CreditsProps, MovieData, ReviewResult, VideoProps } from "./types";
 import { BsPlayFill, BsStarFill, BsTicketPerforated } from "react-icons/bs";
-import { Tabs } from "./components";
+import { Tabs } from "@/components";
 import { Data } from "@/pages/api/fetchData";
 import { getYearFromDate } from "@/utils";
 import {
@@ -11,7 +11,7 @@ import {
   OverviewTab,
   RelatedTab,
   ReviewsTab,
-} from "./components/tabs/components";
+} from "./components/tabs";
 
 interface DetailsProps {
   movie: MovieData;

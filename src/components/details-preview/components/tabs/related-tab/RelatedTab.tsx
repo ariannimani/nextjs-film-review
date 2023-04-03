@@ -1,7 +1,6 @@
 import { Data, Result } from "@/pages/api/fetchData";
 import React, { FC, useState } from "react";
-import Pagination from "../../../../../pagination/Pagination";
-import { TopBarFilter } from "@/components";
+import { TopBarFilter, Pagination } from "@/components";
 import { Related } from "./components";
 
 interface RelatedTabProps {

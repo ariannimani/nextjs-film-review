@@ -39,7 +39,7 @@ export const fetchData = async (query: {
     query.value
   }?api_key=b81c20b4ad589c35fcc33ec48b338339${
     query.page ? "&page=" + query.page : ""
-  }&language=en-US ${query.query ? "query=" + query.query : ""}`;
+  }&language=en-US${query.query ? "&query=" + query.query : ""}`;
   const res = await fetch(url);
   const data: Data = await res.json();
   return data;

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Image from "next/image";
 import { BsArrowRightShort } from "react-icons/bs";
 import VideoPlayer from "@/components/video-player/VideoPlayer";
-import { Review, Sidebar } from "../../..";
+import { Review, Sidebar } from "@/components/details-preview/components";
 import Link from "next/link";
 import { OverviewTabContent } from "./types";
 

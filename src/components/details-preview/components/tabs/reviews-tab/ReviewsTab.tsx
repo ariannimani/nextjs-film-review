@@ -1,8 +1,7 @@
 import React, { FC, useState } from "react";
 import { ReviewProps, ReviewResult } from "@/components/details-preview/types";
-import Review from "../../../review/Review";
-import { TopBarFilter } from "@/components";
-import Pagination from "../../../../../pagination/Pagination";
+import { Review } from "@/components/details-preview/components";
+import { TopBarFilter, Pagination } from "@/components";
 
 interface ReviewsTabProps {
   data: ReviewResult;
