@@ -20,7 +20,7 @@ interface SearchOptionsProps {
 const searchOptions: SearchOptionsProps[] = [
   { id: 1, title: "TV show", value: "tv" },
   { id: 2, title: "Movies", value: "movie" },
-  { id: 3, title: "Celebrities", value: "people" },
+  { id: 3, title: "Celebrities", value: "person" },
 ];
 
 const TopSearch: React.FC = () => {
@@ -40,14 +40,17 @@ const TopSearch: React.FC = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm((prev) => ({ ...prev, search: event.target.value }));
   };
-  console.log({ searchResults });
+
   return (
     <>
       <div className="top-search">
         <select
           value={searchTerm.category}
           onChange={(e) =>
-            setSearchTerm((prev) => ({ ...prev, category: e.target.value }))
+            setSearchTerm((prev) => ({
+              ...prev,
+              category: e.target.value,
+            }))
           }
         >
           {searchOptions.map((option) => (
@@ -67,7 +70,16 @@ const TopSearch: React.FC = () => {
         <div className="search-results">
           <ul>
             {searchResults.map((result) => (
-              <Link href={`/movies/${result.id}`} key={result.id}>
+              <Link
+                href={`/${
+                  searchTerm.category === "movies"
+                    ? "movies"
+                    : searchTerm.category === "tv"
+                    ? "tv"
+                    : "celebrities"
+                }/${result.id}`}
+                key={result.id}
+              >
                 <div className="search-result-item">
                   {result.backdrop_path ? (
                     <Image
@@ -78,7 +90,7 @@ const TopSearch: React.FC = () => {
                       height={100}
                     />
                   ) : (
-                    <h4 className="no-image">{getInitials(result.title)}</h4>
+                    <h4 className="no-image">{result.title}</h4>
                   )}
                   <li>{result.title}</li>
                 </div>
