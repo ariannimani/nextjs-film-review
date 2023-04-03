@@ -8,3 +8,7 @@ export { default as SideBar } from "./sidebar/SideBar";
 export { default as Tabs } from "./tabs/Tabs";
 export { default as MainHead } from "./main-head/MainHead";
 export { default as VideoPlayer } from "./video-player/VideoPlayer";
+export { default as SearchForm } from "./search-form/SearchForm";
+export { default as Hero } from "./hero/Hero";
+export { default as MovieItem } from "./movie-item/MovieItem";
+export { default as FilterBar } from "./filter-bar/FilterBar";

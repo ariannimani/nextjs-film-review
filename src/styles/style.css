@@ -8439,3 +8439,24 @@ footer.full-width-ft .ft-copyright {
 .cursor-class{
   cursor: pointer;
 }
+.no-image-initials{
+  font-family: "Dosis", sans-serif;
+  font-size: 14px;
+  color: #abb7c4;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  background-color: #233a50;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}

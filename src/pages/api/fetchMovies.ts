@@ -12,6 +12,7 @@ export interface Dates {
 }
 
 export interface Result {
+  name: string;
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -32,12 +33,13 @@ export const fetchMovies = async (query: {
   type: string;
   value?: string;
   page?: number;
+  query?: string;
 }) => {
   const url = `https://api.themoviedb.org/3/${query.type}/${
     query.value
   }?api_key=b81c20b4ad589c35fcc33ec48b338339${
     query.page ? "&page=" + query.page : ""
-  }&language=en-US`;
+  }&language=en-US ${query.query ? "query=" + query.query : ""}`;
   const res = await fetch(url);
   const data: Data = await res.json();
   return data;
