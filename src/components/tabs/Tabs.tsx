@@ -48,7 +48,9 @@ const Tabs: FC<MovieTabsProps> = ({ tabs, tabContents }) => {
           ))}
         </ul>
         <div className="tab-content">
-          <ActiveTabComponent {...{ data: activeTabContent.data }} />
+          <ActiveTabComponent
+            {...{ data: activeTabContent.data, setActiveTab }}
+          />
         </div>
       </div>
     </div>

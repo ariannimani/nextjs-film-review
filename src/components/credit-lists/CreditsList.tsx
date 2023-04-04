@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { CastCrewPerson } from "./components";
+import { CreditsItem } from "./components";
 import { CreditsProps } from "@/components/details-preview/types";
 
-interface CastCreditTabProps {
+interface CreditsListProps {
   data: CreditsProps;
 }
-const CastCrewTab: FC<CastCreditTabProps> = ({ data }) => {
+const CreditsList: FC<CreditsListProps> = ({ data }) => {
   const directors = data.crew.filter((director) => director.job === "Director");
 
   const directorsAndCreditWriters = data.crew.filter(
@@ -22,51 +22,55 @@ const CastCrewTab: FC<CastCreditTabProps> = ({ data }) => {
     <div id="cast" className="tab cast active">
       <div className="row">
         <div className="title-hd-sm">
-          <h4>Directors</h4>
+          <h4>Director</h4>
         </div>
         {directors.map((director) => (
-          <CastCrewPerson
+          <CreditsItem
             key={director.id}
             id={director.id}
-            profile_path={director.profile_path}
+            image={director.profile_path}
             name={director.name}
-            job={director.job}
+            description={director.job}
+            category="celebrities"
           />
         ))}
         <div className="title-hd-sm">
           <h4>Directors & Credit Writers</h4>
         </div>
         {directorsAndCreditWriters.map((director) => (
-          <CastCrewPerson
+          <CreditsItem
             key={director.id}
             id={director.id}
-            profile_path={director.profile_path}
+            image={director.profile_path}
             name={director.name}
-            job={director.job}
+            description={director.job}
+            category="celebrities"
           />
         ))}
         <div className="title-hd-sm">
           <h4>Cast</h4>
         </div>
         {data.cast.map((cast) => (
-          <CastCrewPerson
+          <CreditsItem
             key={cast.id}
             id={cast.id}
-            profile_path={cast.profile_path}
+            image={cast.profile_path}
             name={cast.name}
-            job={"Actor"}
+            description={"Actor"}
+            category="celebrities"
           />
         ))}
         <div className="title-hd-sm">
           <h4>Produced by</h4>
         </div>
         {producers.map((producer) => (
-          <CastCrewPerson
+          <CreditsItem
             key={producer.id}
             id={producer.id}
-            profile_path={producer.profile_path}
+            image={producer.profile_path}
             name={producer.name}
-            job={producer.job}
+            description={producer.job}
+            category="celebrities"
           />
         ))}
       </div>
@@ -74,4 +78,4 @@ const CastCrewTab: FC<CastCreditTabProps> = ({ data }) => {
   );
 };
 
-export default CastCrewTab;
+export default CreditsList;

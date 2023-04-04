@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import { VideoProps } from "@/components/details-preview/types";
 import { VideoItem } from "./component";
 
-interface MediaTabProps {
+interface MediaProps {
   data: VideoProps[];
 }
-const MediaTab: FC<MediaTabProps> = ({ data }) => {
+const Media: FC<MediaProps> = ({ data }) => {
   return (
     <div id="media" className="tab media active">
       <div className="row">
@@ -25,4 +25,4 @@ const MediaTab: FC<MediaTabProps> = ({ data }) => {
   );
 };
 
-export default MediaTab;
+export default Media;

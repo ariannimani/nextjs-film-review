@@ -3,26 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
 
-interface CastCrewPersonProps {
+interface CreditsItemProps {
   id: number;
-  profile_path?: string;
+  image?: string;
   name: string;
-  job: string;
+  description: string;
+  category: string;
 }
-const CastCrewPerson: FC<CastCrewPersonProps> = ({
+const CreditsItem: FC<CreditsItemProps> = ({
   id,
-  profile_path,
+  image,
   name,
-  job,
+  description,
+  category,
 }) => {
   return (
     <div className="mvcast-item">
       <div className="cast-it">
         <div className="cast-left">
-          {profile_path ? (
+          {image ? (
             <Image
               loading="lazy"
-              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+              src={`https://image.tmdb.org/t/p/w500${image}`}
               alt={name}
               width={40}
               height={40}
@@ -31,12 +33,12 @@ const CastCrewPerson: FC<CastCrewPersonProps> = ({
             <h4>{getInitials(name)}</h4>
           )}
 
-          <Link href={`/celebrities/${id}`}>{name}</Link>
+          <Link href={`/${category}/${id}`}>{name}</Link>
         </div>
-        <p>... {job}</p>
+        <p>... {description}</p>
       </div>
     </div>
   );
 };
 
-export default CastCrewPerson;
+export default CreditsItem;

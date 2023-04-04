@@ -18,8 +18,8 @@ interface SearchOptionsProps {
 }
 
 const searchOptions: SearchOptionsProps[] = [
-  { id: 1, title: "TV show", value: "tv" },
-  { id: 2, title: "Movies", value: "movie" },
+  { id: 1, title: "Movies", value: "movie" },
+  { id: 2, title: "TV show", value: "tv" },
   { id: 3, title: "Celebrities", value: "person" },
 ];
 
@@ -90,7 +90,7 @@ const TopSearch: React.FC = () => {
                       height={100}
                     />
                   ) : (
-                    <h4 className="no-image">{result.title}</h4>
+                    <h4 className="no-image">{getInitials(result.title)}</h4>
                   )}
                   <li>{result.title}</li>
                 </div>

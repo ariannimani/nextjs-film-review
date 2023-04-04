@@ -27,6 +27,7 @@ export async function getServerSideProps(context: { query: { id: any } }) {
   };
 }
 
+//FIXME: fix any type
 const MovieSingle = ({ movie, credits, reviews, videos, related }: any) => {
   const router = useRouter();
   const { id } = router.query;

@@ -1,17 +1,11 @@
-import Image from "next/image";
 import React, { FC } from "react";
 import { CreditsProps, MovieData, ReviewResult, VideoProps } from "./types";
-import { BsPlayFill, BsStarFill, BsTicketPerforated } from "react-icons/bs";
-import { Tabs } from "@/components";
+import { BsStarFill } from "react-icons/bs";
+import { Poster, Tabs } from "@/components";
 import { Data } from "@/pages/api/fetchData";
 import { getYearFromDate } from "@/utils";
-import {
-  CastCrewTab,
-  MediaTab,
-  OverviewTab,
-  RelatedTab,
-  ReviewsTab,
-} from "./components/tabs";
+import { OverviewTab, RelatedTab, ReviewsTab } from "./components/tabs";
+import { CreditList, Media } from "@/components";
 
 interface DetailsProps {
   movie: MovieData;
@@ -49,12 +43,12 @@ const Details: FC<DetailsProps> = ({
     },
     {
       tabValue: "cast-crew",
-      component: CastCrewTab,
+      component: CreditList,
       data: credits,
     },
     {
       tabValue: "media",
-      component: MediaTab,
+      component: Media,
       data: videos,
     },
     {
@@ -68,48 +62,7 @@ const Details: FC<DetailsProps> = ({
     <div className="page-single movie-single movie_single">
       <div className="container">
         <div className="row ipad-width2">
-          <div className="col-md-4 col-sm-12 col-xs-12">
-            <div className="movie-img sticky-sb">
-              {movie.poster_path && (
-                <Image
-                  loading="lazy"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  width={400}
-                  height={600}
-                />
-              )}
-              <div className="movie-btn">
-                <div className="btn-transform transform-vertical red">
-                  <div>
-                    <a className="item item-1 redbtn">
-                      <BsPlayFill /> Watch Trailer
-                    </a>
-                  </div>
-                  <div>
-                    <a
-                      href="https://www.youtube.com/embed/o-0hcF97wy0"
-                      className="item item-2 redbtn fancybox-media hvr-grow"
-                    >
-                      <BsPlayFill />
-                    </a>
-                  </div>
-                </div>
-                <div className="btn-transform transform-vertical">
-                  <div>
-                    <a className="item item-1 yellowbtn">
-                      <BsTicketPerforated /> Buy ticket
-                    </a>
-                  </div>
-                  <div>
-                    <a className="item item-2 yellowbtn">
-                      <BsTicketPerforated />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Poster image={movie.poster_path} title={movie.title} videoId={""} />
           <div className="col-md-8 col-sm-12 col-xs-12">
             <div className="movie-single-ct main-content">
               <h1 className="bd-hd">

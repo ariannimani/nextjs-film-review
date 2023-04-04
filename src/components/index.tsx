@@ -16,3 +16,6 @@ export { default as DetailsPreview } from "./details-preview/DetailsPreview";
 export { default as Pagination } from "./pagination/Pagination";
 export { default as TopBarFilter } from "./top-bar-filter/TopBarFilter";
 export { default as Tabs } from "./tabs/Tabs";
+export { default as Poster } from "./poster/Poster";
+export { default as CreditList } from "./credit-lists/CreditsList";
+export { default as Media } from "./media/Media";

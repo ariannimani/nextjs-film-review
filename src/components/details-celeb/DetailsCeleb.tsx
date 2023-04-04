@@ -1,8 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 
-const DetailsCeleb = () => {
+interface DetailsCeleb {
+  celebrity: any;
+}
+const DetailsCeleb: FC<DetailsCeleb> = ({ celebrity }) => {
   return (
-    <div className="page-single movie-single cebleb-single">
+    <div className="page-single movie-single">
       <div className="container">
         <div className="row ipad-width">
           <div className="col-md-4 col-sm-12 col-xs-12">
@@ -12,22 +15,10 @@ const DetailsCeleb = () => {
           </div>
           <div className="col-md-8 col-sm-12 col-xs-12">
             <div className="movie-single-ct">
-              <h1 className="bd-hd">Hugh Jackman</h1>
-              <p className="ceb-single">Actor | Producer</p>
-              <div className="social-link cebsingle-socail">
-                <a href="#">
-                  <i className="ion-social-facebook"></i>
-                </a>
-                <a href="#">
-                  <i className="ion-social-twitter"></i>
-                </a>
-                <a href="#">
-                  <i className="ion-social-googleplus"></i>
-                </a>
-                <a href="#">
-                  <i className="ion-social-linkedin"></i>
-                </a>
-              </div>
+              <h1 className="bd-hd">{celebrity.name}</h1>
+              <p className="ceb-single">
+                Known for: {celebrity.known_for_department}
+              </p>
               <div className="movie-tabs">
                 <div className="tabs">
                   <ul className="tab-links tabs-mv">

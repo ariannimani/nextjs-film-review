@@ -8,6 +8,7 @@ import { OverviewTabContent } from "./types";
 
 interface OverviewTabProps {
   data: OverviewTabContent;
+  //FIXME: fix any type
   setActiveTab: any;
 }
 
