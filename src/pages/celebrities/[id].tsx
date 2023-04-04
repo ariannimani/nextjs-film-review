@@ -8,23 +8,26 @@ export async function getServerSideProps(context: { query: { id: any } }) {
   const { id } = context.query;
   const queryCelebrities = { type: "person", value: id };
   const celebrity = await fetchData(queryCelebrities);
+  const queryVideos = { type: "person", value: `${id}/combined_credits` };
+  const films = await fetchData(queryVideos);
 
   return {
     props: {
       celebrity,
+      films,
     },
   };
 }
 
 //FIXME: fix any type
-const CelebrityDetails = ({ celebrity }: any) => {
+const CelebrityDetails = ({ celebrity, films }: any) => {
   const router = useRouter();
   const { id } = router.query;
 
   return (
     <div>
       <Header />
-      <DetailsCeleb celebrity={celebrity} />
+      <DetailsCeleb {...{ films, celebrity }} />
       <Footer />
     </div>
   );
