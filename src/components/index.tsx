@@ -19,3 +19,4 @@ export { default as Tabs } from "./tabs/Tabs";
 export { default as Poster } from "./poster/Poster";
 export { default as CreditList } from "./credit-lists/CreditsList";
 export { default as Media } from "./media/Media";
+export { default as DataItem } from "./data-item/DataItem";

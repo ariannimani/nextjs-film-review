@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Media, Poster, Tabs } from "@/components";
 import { Biography, Filmography } from "./components";
+import Overview from "./components/tabs/overview/Overview";
 
 interface DetailsCeleb {
   //FIXME: fix any type
@@ -11,25 +12,19 @@ const DetailsCeleb: FC<DetailsCeleb> = ({ celebrity, films }) => {
   const tabs = [
     { value: "overview", label: "Overview" },
     { value: "biography", label: "Biography" },
-    { value: "media", label: "Media" },
     { value: "filmography", label: "Filmography" },
   ];
 
   const tabContents = [
     {
       tabValue: "overview",
-      component: "OverviewTab",
-      data: celebrity,
+      component: Overview,
+      data: { celebrity, films },
     },
     {
       tabValue: "biography",
       component: Biography,
-      data: celebrity,
-    },
-    {
-      tabValue: "media",
-      component: Media,
-      data: films,
+      data: celebrity.biography,
     },
     {
       tabValue: "filmography",

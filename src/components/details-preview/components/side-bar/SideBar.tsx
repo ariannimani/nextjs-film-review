@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { formatDate } from "@/utils/formatDate";
 import { CreditsProps, MovieData } from "../../types";
 import Link from "next/link";
+import DataItem from "@/components/data-item/DataItem";
 
 interface SideBarProps {
   credits: CreditsProps;
@@ -22,44 +23,11 @@ const SideBar: FC<SideBarProps> = ({ credits, movie }) => {
 
   return (
     <div className="col-md-4 col-xs-12 col-sm-12">
-      <div className="sb-it">
-        <h6>Director: </h6>
-        <p>
-          {directors.map((director) => (
-            <Link key={director.id} href={`/celebrities/${director.id}`}>
-              {director.name}
-            </Link>
-          ))}
-        </p>
-      </div>
-      <div className="sb-it">
-        <h6>Writer: </h6>
-        <p>
-          {writers.map((writer) => (
-            <Link key={writer.id} href={`/celebrities/${writer.id}`}>
-              {writer.name}
-            </Link>
-          ))}
-        </p>
-      </div>
-      <div className="sb-it">
-        <h6>Stars: </h6>
-        <p>
-          {stars.map((star) => (
-            <Link key={star.id} href={`/celebrities/${star.id}`}>
-              {star.name}
-            </Link>
-          ))}
-        </p>
-      </div>
-      <div className="sb-it">
-        <h6>Genres:</h6>
-        <p>
-          {movie.genres.map((genre) => (
-            <a key={genre.id}>{genre.name} </a>
-          ))}
-        </p>
-      </div>
+      <DataItem title="Director" data={directors} category="celebrities" />
+      <DataItem title="Writer" data={writers} category="celebrities" />
+      <DataItem title="Stars" data={stars} category="celebrities" />
+      <DataItem title="Genres" data={movie.genres} />
+
       <div className="sb-it">
         <h6>Release Date:</h6>
         <p>
