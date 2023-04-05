@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface BlogCardProps {
+  id: string;
   slug: string;
   title: string;
   description: string;
@@ -11,6 +12,7 @@ interface BlogCardProps {
   image: string;
 }
 const BlogCard: FC<BlogCardProps> = ({
+  id,
   slug,
   title,
   description,
@@ -25,7 +27,7 @@ const BlogCard: FC<BlogCardProps> = ({
         </a>
         <div className="blog-it-infor">
           <h3>
-            <Link href={`/blog/${slug}`}>{title}</Link>
+            <Link href={`/blog/${slug}?postId=${id}`}>{title}</Link>
           </h3>
           <span className="time">{formatDate(date.toString())}</span>
           <p>{description} ...</p>

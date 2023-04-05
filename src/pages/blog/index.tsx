@@ -40,6 +40,7 @@ const Blog: FC<BlogProps> = ({ posts }) => {
               <div className="blog-grid">
                 {posts.map((post) => (
                   <BlogCard
+                  id={post.id}
                     key={post.id}
                     slug={post.slug}
                     title={post.title}
