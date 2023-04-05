@@ -1,0 +1,33 @@
+{
+  "id": 123,
+  "author": "arian",
+  "date": "2012-04-23T18:25:43.511Z",
+  "date_gmt": "2012-04-23T18:25:43.511Z",
+  "content": "This is the content of the post.",
+  "summary": "This is the content...",
+  "title": "My Post",
+  "excerpt": "An optional excerpt for the post.",
+  "status": "publish",
+  "slug": "my-post",
+  "modified": "2012-04-23T18:25:43.511Z",
+  "modified_gmt": "2012-04-23T18:25:43.511Z",
+  "categories": ["javascript", "react"],
+  "type": "regular",
+  "tags": ["tag1", "tag2"],
+  "thumbnail": "img.png",
+  "comment_status": "open",
+  "format": "video",
+  "meta": ["metatag1", "metatag2"],
+  "read_time": 20,
+  "views": 20,
+  "rating": 5,
+  "likes_number": 0,
+  "comments": [
+    {
+      "id": 1,
+      "content": "test comment",
+      "author": "arian",
+      "date": "2012-04-23T18:25:43.511Z"
+    }
+  ]
+}

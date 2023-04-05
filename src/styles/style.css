@@ -8505,3 +8505,25 @@ footer.full-width-ft .ft-copyright {
   justify-content: center;
   align-items: center;
 }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* three columns of equal width */
+  grid-gap: 20px; /* space between cards */
+}
+
+/* Media queries for responsive layout */
+@media (max-width: 991px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr); /* two columns of equal width */
+  }
+}
+
+@media (max-width: 767px) {
+  .blog-grid {
+    grid-template-columns: 1fr; /* one column of full width */
+  }
+}
+
+.blog-card {
+  padding: 20px;
+}
