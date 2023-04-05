@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Footer, Header, DetailsPreview } from "@/components";
+import { DetailsPreview } from "@/components/movies";
+import { Footer, Header } from "@/components";
+
 import { fetchData } from "@/pages/api/fetchData";
 
 export async function getServerSideProps(context: { query: { id: any } }) {

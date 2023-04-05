@@ -1,5 +1,10 @@
-import { FilterBar, Footer, Header, Card, SearchForm } from "@/components";
-import { Pagination } from "@/components";
+import {
+  FilterBar,
+  Card,
+  SearchForm,
+} from "@/components/movies";
+import {Footer,  Header} from '@/components'
+import { Pagination } from "@/components/movies";
 import React, { useState } from "react";
 import { fetchData } from "../api/fetchData";
 import { InferGetServerSidePropsType } from "next";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Footer, Header } from "@/components";
-import { Pagination, Sidebar, BlogCard } from "@/components/blogComponents";
+import { Pagination, Sidebar, BlogCard } from "@/components/blog";
 
 const Blog = () => {
   return (

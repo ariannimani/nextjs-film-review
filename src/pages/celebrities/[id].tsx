@@ -1,4 +1,4 @@
-import DetailsCeleb from "@/components/details-celeb/DetailsCeleb";
+import DetailsCeleb from "@/components/movies/details-celeb/DetailsCeleb";
 import { useRouter } from "next/router";
 import React from "react";
 import { fetchData } from "../api/fetchData";
