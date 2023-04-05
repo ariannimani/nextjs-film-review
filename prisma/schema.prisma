@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  email     String    @unique
+  firstName String
+  lastName  String
+  password  String
+  posts     Post[]
+  comment   Comment[]
+  replies   Replies[]
+}
+
+enum POST_STATUS {
+  PUBLISHED
+  HIDDEN
+  DRAFT
+}
+
+model Post {
+  id             String      @id @default(uuid())
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  userId         String
+  owner          User        @relation(fields: [userId], references: [id])
+  title          String
+  content        String
+  summary        String
+  excerpt        String
+  status         POST_STATUS @default(DRAFT)
+  slug           String
+  categories     String[]
+  type           String
+  tags           String[]
+  thumbnail      String
+  comment_status String
+  format         String
+  meta           String[]
+  read_time      Int
+  views          Int
+  rating         Decimal
+  likes_number   Int
+  deleted        Boolean     @default(false)
+  comments       Comment[]
+
+  @@index([userId, id])
+}
+
+model Comment {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  content   String
+  userId    String
+  owner     User      @relation(fields: [userId], references: [id])
+  postId    String
+  post      Post      @relation(fields: [postId], references: [id])
+  deleted   Boolean   @default(false)
+  replies   Replies[]
+
+  @@index([userId])
+}
+
+model Replies {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+  userId    String
+  owner     User     @relation(fields: [userId], references: [id])
+  commentId String
+  comment   Comment  @relation(fields: [commentId], references: [id])
+  deleted   Boolean  @default(false)
+
+  @@index([userId])
+}
