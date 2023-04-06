@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>
       <ReduxProvider store={store}>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </ReduxProvider>
     </React.StrictMode>
   );

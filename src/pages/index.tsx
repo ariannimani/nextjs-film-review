@@ -1,13 +1,7 @@
 import { GetServerSideProps } from "next";
 import { InferGetServerSidePropsType } from "next";
-import {Footer,  Header} from '@/components'
-import {
-  
-  Items,
-  Slider,
-  Trailers,
-  MainHead,
-} from "@/components/movies";
+import { Footer, Header } from "@/components";
+import { Items, Slider, Trailers, MainHead } from "@/components/movies";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setGenres } from "@/redux/slices/genresSlice";
