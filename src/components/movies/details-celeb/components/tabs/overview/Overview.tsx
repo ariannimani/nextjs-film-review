@@ -8,8 +8,7 @@ import { truncateText } from "@/utils";
 interface OverviewProps {
   data: any;
   films: any;
-  //FIXME: fix any type
-  setActiveTab: any;
+  setActiveTab: (tab: string) => {};
 }
 
 const Overview: FC<OverviewProps> = ({ data, setActiveTab }) => {

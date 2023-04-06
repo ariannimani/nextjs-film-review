@@ -4,7 +4,7 @@ import React from "react";
 import { fetchData } from "../api/fetchData";
 import { Footer, Header } from "@/components";
 
-export async function getServerSideProps(context: { query: { id: any } }) {
+export async function getServerSideProps(context: { query: { id: string } }) {
   const { id } = context.query;
   const queryCelebrities = { type: "person", value: id };
   const celebrity = await fetchData(queryCelebrities);
@@ -23,7 +23,7 @@ export async function getServerSideProps(context: { query: { id: any } }) {
 const CelebrityDetails = ({ celebrity, films }: any) => {
   const router = useRouter();
   const { id } = router.query;
-
+  console.log(celebrity, films);
   return (
     <div>
       <Header />

@@ -1,9 +1,5 @@
-import {
-  FilterBar,
-  Card,
-  SearchForm,
-} from "@/components/movies";
-import {Footer,  Header} from '@/components'
+import { FilterBar, Card, SearchForm } from "@/components/movies";
+import { Footer, Header } from "@/components";
 import { Pagination } from "@/components/movies";
 import React, { useState } from "react";
 import { fetchData } from "../api/fetchData";
@@ -28,8 +24,7 @@ const TvShows = ({
   const [perPageNumber, setPerPageNumber] = useState(1);
   const movies = data.results;
   const genres = useSelector(selectGenres);
-  //FIXME: fix any type
-  const ratingRange: any[] = [];
+  const ratingRange: number[] = [];
   const releaseYears = ["2011", "2022"];
 
   return (

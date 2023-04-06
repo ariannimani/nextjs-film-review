@@ -11,11 +11,11 @@ import { OverviewTabContent } from "./types";
 
 interface OverviewTabProps {
   data: OverviewTabContent;
-  //FIXME: fix any type
-  setActiveTab: any;
+  setActiveTab: (tab: string) => {};
 }
 
 const OverviewTab: FC<OverviewTabProps> = ({ data, setActiveTab }) => {
+  console.log(typeof setActiveTab);
   return (
     <div id="overview" className="tab active">
       <div className="row">

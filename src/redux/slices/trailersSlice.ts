@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface RootTrailer {
-  //FIXME: fix any type
-  trailers: any;
+  trailers: TrailersState;
 }
 interface Trailer {}
 // declaring the types for our state

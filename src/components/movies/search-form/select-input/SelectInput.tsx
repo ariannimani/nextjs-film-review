@@ -4,7 +4,6 @@ interface SelectInputProps {
   title: string;
   filterTitle: string;
   options: string[];
-  //FIXME: fix any type
   register: any;
 }
 const SelectInput: FC<SelectInputProps> = ({

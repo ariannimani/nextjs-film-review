@@ -3,7 +3,13 @@ import React, { FC } from "react";
 import SelectInput from "./select-input/SelectInput";
 import DoubleSelectInput from "./double-select-input/DoubleSelectInput";
 import { fetchData } from "@/pages/api/fetchData";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  FieldElement,
+  Ref,
+  RegisterOptions,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
 interface SearchFormProps {
   title: string;
@@ -13,7 +19,7 @@ interface SearchFormProps {
   thirdInput: any[];
 }
 
-type FormValues = {
+export type FormValues = {
   genres: string;
   rating: string;
   years: string;

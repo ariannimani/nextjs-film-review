@@ -1,3 +1,5 @@
+import { Data } from "@/pages/api/fetchData";
+import { Post } from "@prisma/client";
 import React, { FC, useState } from "react";
 
 export interface TabsProps {
@@ -8,8 +10,7 @@ export interface TabsProps {
 export interface TabContent {
   tabValue: string;
   component: React.FC<any>;
-  //FIXME: fix any type
-  data: any;
+  data: Data;
 }
 
 interface MovieTabsProps {

@@ -24,8 +24,9 @@ const Movies = ({
   const [perPageNumber, setPerPageNumber] = useState(1);
   const movies = data.results;
   const genres = useSelector(selectGenres);
-  //FIXME: fix any type
-  const ratingRange: any[] = [];
+  const ratingRange: number[] = [];
+
+  console.log({ ratingRange });
   const releaseYears = ["2011", "2022"];
 
   return (
