@@ -1,13 +1,13 @@
-import useClickOutside from "@/hooks/useClickOutside";
-import React, { FC } from "react";
+import { useOnClickOutside } from "@/hooks";
+
+import React, { FC, useRef } from "react";
 
 interface SignInProps {
   onBlur: any;
 }
 const SignIn: FC<SignInProps> = ({ onBlur }) => {
-  const ref = useClickOutside(onBlur);
-
-  console.log({ ref });
+  const ref = useRef(null);
+  useOnClickOutside(ref, () => onBlur());
 
   return (
     <div className="login-wrapper" id="login-content" ref={ref}>

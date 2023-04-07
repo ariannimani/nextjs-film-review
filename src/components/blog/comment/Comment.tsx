@@ -9,7 +9,7 @@ import Image from "next/image";
 
 interface CommentProps {
   content: string;
-  date: string;
+  date: Date | string;
   userId: string;
 }
 

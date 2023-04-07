@@ -6814,6 +6814,8 @@ p.ceb-single {
   background-position: center;
   text-align: center;
   background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 .middle-content {
   display: -webkit-flex;
@@ -8541,7 +8543,7 @@ footer.full-width-ft .ft-copyright {
   background: none;
   margin-bottom: 30px;
 }
-.comment-container form input:hover{
+.comment-container form input:hover {
   border: 1px solid #dcf836;
 }
 
@@ -8559,13 +8561,13 @@ footer.full-width-ft .ft-copyright {
   text-transform: uppercase;
   border: none;
 }
-.comment-container .flex-it3{
+.comment-container .flex-it3 {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.comment-container .image{
+.comment-container .image {
   width: 70px;
-  height:70px
+  height: 70px;
 }

@@ -1,22 +1,14 @@
 import { capitalizeFirstLetter } from "@/utils";
 import React, { FC } from "react";
 import SelectInput from "./select-input/SelectInput";
-import DoubleSelectInput from "./double-select-input/DoubleSelectInput";
-import { fetchData } from "@/pages/api/fetchData";
-import {
-  FieldElement,
-  Ref,
-  RegisterOptions,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Genre } from "../details-preview/types";
 
 interface SearchFormProps {
   title: string;
-  //FIXME: fix any type
-  firstInput: any[];
-  secondInput: any[];
-  thirdInput: any[];
+  firstInput: Genre[];
+  secondInput: number[];
+  thirdInput: string[];
 }
 
 export type FormValues = {

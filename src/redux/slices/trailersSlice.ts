@@ -1,3 +1,4 @@
+import { VideoProps } from "@/types/movies/CommonTypes";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface RootTrailer {
@@ -6,7 +7,7 @@ interface RootTrailer {
 interface Trailer {}
 // declaring the types for our state
 export type TrailersState = {
-  trailers: Trailer[];
+  trailers: VideoProps[];
 };
 
 const initialState: TrailersState = {
@@ -17,7 +18,7 @@ export const trailersSlice = createSlice({
   name: "Trailers",
   initialState,
   reducers: {
-    setTrailers: (state, action: PayloadAction<Trailer[]>) => {
+    setTrailers: (state, action: PayloadAction<VideoProps>) => {
       state.trailers = [...state.trailers, action.payload];
     },
   },

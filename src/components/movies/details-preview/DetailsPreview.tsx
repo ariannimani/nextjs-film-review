@@ -1,18 +1,23 @@
 import React, { FC } from "react";
-import { CreditsProps, MovieData, ReviewResult, VideoProps } from "./types";
 import { BsStarFill } from "react-icons/bs";
 import { Poster, Tabs } from "@/components/movies";
-import { Data } from "@/pages/api/fetchData";
 import { getYearFromDate } from "@/utils";
 import { OverviewTab, RelatedTab, ReviewsTab } from "./components/tabs";
 import { CreditList, Media } from "@/components/movies";
+import { MovieProps, MoviesResult } from "@/types/movies/MoviesTypes";
+import { TvShowProps, TvShowsResult } from "@/types/movies/TvShowsTypes";
+import {
+  CreditsResult,
+  ReviewsResult,
+  VideoProps,
+} from "@/types/movies/CommonTypes";
 
 interface DetailsProps {
-  movie: MovieData;
-  credits: CreditsProps;
-  reviews: ReviewResult;
+  movie: MovieProps | TvShowProps;
+  credits: CreditsResult;
+  reviews: ReviewsResult;
   videos: VideoProps[];
-  related: Data;
+  related: MoviesResult | TvShowsResult;
 }
 
 const Details: FC<DetailsProps> = ({
@@ -58,16 +63,30 @@ const Details: FC<DetailsProps> = ({
     },
   ];
 
+  const isMovieProps = (obj: any): obj is MovieProps => {
+    return obj.original_title !== undefined;
+  };
+
   return (
     <div className="page-single movie-single movie_single">
       <div className="container">
         <div className="row ipad-width2">
-          <Poster image={movie.poster_path} title={movie.title} videoId={""} />
+          <Poster
+            image={movie.poster_path}
+            title={isMovieProps(movie) ? movie.title : movie.name}
+            videoId={""}
+          />
           <div className="col-md-8 col-sm-12 col-xs-12">
             <div className="movie-single-ct main-content">
               <h1 className="bd-hd">
-                {movie.original_title}{" "}
-                <span>{getYearFromDate(movie.release_date)}</span>
+                {isMovieProps(movie) ? movie.original_title : movie.name}{" "}
+                <span>
+                  {getYearFromDate(
+                    isMovieProps(movie)
+                      ? movie.release_date
+                      : movie.first_air_date
+                  )}
+                </span>
               </h1>
               <div className="movie-rate">
                 <div className="rate">

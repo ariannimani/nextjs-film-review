@@ -1,11 +1,15 @@
-import React, { FC } from "react";
+import { useOnClickOutside } from "@/hooks";
+import React, { FC, useRef } from "react";
 
 interface SignUpProps {
   onBlur: any;
 }
 const SignUp: FC<SignUpProps> = ({ onBlur }) => {
+  const ref = useRef(null);
+  useOnClickOutside(ref, () => onBlur());
+
   return (
-    <div className="login-wrapper" id="signup-content" onBlur={onBlur}>
+    <div className="login-wrapper" id="signup-content" ref={ref}>
       <div className="login-content">
         <a href="#" className="close">
           x

@@ -2,9 +2,8 @@ import React, { FC } from "react";
 
 interface DoubleSelectInput {
   title: string;
-  //FIXME: fix any types
-  option1: any;
-  option2: any;
+  option1: string[];
+  option2: string[];
 }
 
 const DoubleSelectInput: FC<DoubleSelectInput> = ({

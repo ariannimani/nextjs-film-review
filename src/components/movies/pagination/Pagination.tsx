@@ -5,7 +5,7 @@ interface PaginationProps {
   title: string;
   total_pages: number;
   perPageNumber: number;
-  setPerPageNumber: any;
+  setPerPageNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const options = [5, 10, 20];

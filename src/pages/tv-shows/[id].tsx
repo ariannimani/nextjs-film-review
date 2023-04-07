@@ -2,21 +2,27 @@ import React from "react";
 import { useRouter } from "next/router";
 import { DetailsPreview } from "@/components/movies";
 import { Footer, Header } from "@/components";
-
 import { fetchData } from "@/pages/api/fetchData";
+import { InferGetServerSidePropsType } from "next";
+import { TvShowProps, TvShowsResult } from "@/types/movies/TvShowsTypes";
+import {
+  CreditsResult,
+  ReviewsResult,
+  VideosResult,
+} from "@/types/movies/CommonTypes";
 
-export async function getServerSideProps(context: { query: { id: any } }) {
+export async function getServerSideProps(context: { query: { id: string } }) {
   const { id } = context.query;
   const queryMovie = { type: "tv", value: id };
-  const movie = await fetchData(queryMovie);
+  const movie = await fetchData<TvShowProps>(queryMovie);
   const queryCredits = { type: "tv", value: `${id}/credits` };
-  const credits = await fetchData(queryCredits);
+  const credits = await fetchData<CreditsResult>(queryCredits);
   const queryReviews = { type: "tv", value: `${id}/reviews` };
-  const reviews = await fetchData(queryReviews);
+  const reviews = await fetchData<ReviewsResult>(queryReviews);
   const queryVideos = { type: "tv", value: `${id}/videos` };
-  const videos = await fetchData(queryVideos);
+  const videos = await fetchData<VideosResult>(queryVideos);
   const queryRelated = { type: "tv", value: `${id}/similar` };
-  const related = await fetchData(queryRelated);
+  const related = await fetchData<TvShowsResult>(queryRelated);
 
   return {
     props: {
@@ -29,10 +35,15 @@ export async function getServerSideProps(context: { query: { id: any } }) {
   };
 }
 
-const TvShows = ({ movie, credits, reviews, videos, related }: any) => {
+const TvShows = ({
+  movie,
+  credits,
+  reviews,
+  videos,
+  related,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const { id } = router.query;
-
   return (
     <>
       <Header />

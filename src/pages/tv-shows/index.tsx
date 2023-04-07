@@ -6,10 +6,11 @@ import { fetchData } from "../api/fetchData";
 import { InferGetServerSidePropsType } from "next";
 import { useSelector } from "react-redux";
 import { selectGenres } from "@/redux/slices/genresSlice";
+import { TvShowsResult } from "@/types/movies/TvShowsTypes";
 
 export async function getServerSideProps() {
   const queryMovie = { type: "tv", value: "popular" };
-  const data = await fetchData(queryMovie);
+  const data = await fetchData<TvShowsResult>(queryMovie);
 
   return {
     props: {
@@ -40,7 +41,7 @@ const TvShows = ({
                   <Card
                     key={movie.id}
                     id={movie.id}
-                    title={movie.title}
+                    title={movie.name}
                     rating={movie.vote_average}
                     image={movie.poster_path}
                     category="tv-shows"

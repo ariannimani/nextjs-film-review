@@ -12,6 +12,7 @@ export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<{ post: Post }>> {
   const { id, postId } = context.query;
+  //FIXME: fix type for id
   const data = await db.post.findMany({
     where: { id: postId },
     include: { comments: true },
@@ -35,6 +36,7 @@ export async function getServerSideProps(
 interface BlogPostProps {
   post: Post & {
     comments: CommentProps[];
+    date: string;
   };
 }
 

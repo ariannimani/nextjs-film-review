@@ -31,7 +31,7 @@ const Trailers = () => {
               </div>
               <div className="slider-nav-2 thumb-ft">
                 {trailers &&
-                  trailers.map((trailer: any) => (
+                  trailers.map((trailer) => (
                     <TrailerCard
                       key={trailer.id}
                       name={trailer.name}

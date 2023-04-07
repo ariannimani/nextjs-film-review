@@ -2,23 +2,27 @@ import React, { useEffect } from "react";
 import useSWR from "swr";
 import Carousel from "react-multi-carousel";
 import { MainCard } from "@/components/movies";
-import { Data, fetchData, Result } from "@/pages/api/fetchData";
+import { fetchData } from "@/pages/api/fetchData";
 import { responsive } from "@/utils/carouselConfig";
 import "react-multi-carousel/lib/styles.css";
 import { useDispatch } from "react-redux";
 import { setTrailers } from "@/redux/slices/trailersSlice";
+import { MoviesResult } from "@/types/movies/MoviesTypes";
+import { TvShowsResult } from "@/types/movies/TvShowsTypes";
+import { VideosResult } from "@/types/movies/CommonTypes";
+
+type Data = MoviesResult | TvShowsResult;
 
 const Slider = () => {
   const query = { type: "movie", value: "now_playing", page: 1 };
   const { data, error, isLoading } = useSWR<Data, Error>(query, fetchData);
-  const movies: Result[] | undefined = data && data.results;
+  const movies = data && data.results;
   const dispatch = useDispatch();
 
   useEffect(() => {
     movies &&
       movies.forEach(async (movie) => {
-        //FIXME: fix any type
-        const trailers: any = await fetchData({
+        const trailers = await fetchData<VideosResult>({
           type: "movie",
           value: `${movie.id}/videos`,
         });
@@ -27,6 +31,8 @@ const Slider = () => {
   }, [dispatch, movies]);
 
   if (isLoading || error) return <></>;
+
+  //FIXME: fix original title type
   return (
     <div className="slider movie-items">
       <div className="container">

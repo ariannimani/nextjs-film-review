@@ -1,9 +1,10 @@
 import React, { FC } from "react";
+import { Genre } from "../../details-preview/types";
 
 interface SelectInputProps {
   title: string;
   filterTitle: string;
-  options: string[];
+  options: Genre[];
   register: any;
 }
 const SelectInput: FC<SelectInputProps> = ({
@@ -22,7 +23,7 @@ const SelectInput: FC<SelectInputProps> = ({
           {...register(filterTitle)}
         >
           <option value="">Select to filter {filterTitle}</option>
-          {options.map((option: any) => (
+          {options.map((option) => (
             <option key={option.name} value={option.name}>
               {option.name}
             </option>

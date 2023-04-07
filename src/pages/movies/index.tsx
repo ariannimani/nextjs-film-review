@@ -6,10 +6,11 @@ import { fetchData } from "../api/fetchData";
 import { InferGetServerSidePropsType } from "next";
 import { useSelector } from "react-redux";
 import { selectGenres } from "@/redux/slices/genresSlice";
+import { MoviesResult } from "@/types/movies/MoviesTypes";
 
 export async function getServerSideProps() {
   const queryMovie = { type: "movie", value: "popular" };
-  const data = await fetchData(queryMovie);
+  const data = await fetchData<MoviesResult>(queryMovie);
 
   return {
     props: {
@@ -26,7 +27,6 @@ const Movies = ({
   const genres = useSelector(selectGenres);
   const ratingRange: number[] = [];
 
-  console.log({ ratingRange });
   const releaseYears = ["2011", "2022"];
 
   return (

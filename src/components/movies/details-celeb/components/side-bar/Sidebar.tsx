@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import { formatDate } from "@/utils/formatDate";
-import { CreditsProps, MovieData } from "../../types";
 
 interface SideBarProps {
-  credits: CreditsProps;
-  movie: MovieData;
+  data: any;
 }
 const SideBar: FC<SideBarProps> = ({ data }) => {
+  console.log({ data });
   return (
     <div className="col-md-4 col-xs-12 col-sm-12">
       <div className="sb-it">

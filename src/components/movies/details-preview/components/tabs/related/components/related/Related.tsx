@@ -57,7 +57,7 @@ const Related: FC<RelatedProps> = ({
             <p style={{ display: "flex", gap: "15px" }}>
               Genres:{" "}
               <div className="cate">
-                {genres.map((gen: any) => {
+                {genres.map((gen) => {
                   const currentGenre = allGenres.filter(
                     (item) => item.id === gen
                   );

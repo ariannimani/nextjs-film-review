@@ -1,14 +1,14 @@
-import { FilterBar, Card, SearchForm } from "@/components/movies";
+import { FilterBar, Card } from "@/components/movies";
 import { Footer, Header } from "@/components";
-
 import { Pagination } from "@/components/movies";
 import React, { useState } from "react";
 import { fetchData } from "../api/fetchData";
 import { InferGetServerSidePropsType } from "next";
+import { CelebritiesResult } from "@/types/celebrities/CelebritiesTypes";
 
 export async function getServerSideProps() {
   const queryMovie = { type: "person", value: "popular" };
-  const data = await fetchData(queryMovie);
+  const data = await fetchData<CelebritiesResult>(queryMovie);
 
   return {
     props: {
@@ -22,6 +22,7 @@ const Celebrities = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [perPageNumber, setPerPageNumber] = useState(1);
   const celebrities = data.results;
+  console.log(celebrities);
   return (
     <>
       <Header />
@@ -36,7 +37,6 @@ const Celebrities = ({
                     key={celebrity.id}
                     id={celebrity.id}
                     title={celebrity.name}
-                    rating={celebrity.vote_average}
                     image={celebrity.profile_path}
                     job={"Known for: " + celebrity.known_for_department}
                     category="celebrities"

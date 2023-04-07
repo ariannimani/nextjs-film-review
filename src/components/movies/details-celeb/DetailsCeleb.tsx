@@ -2,11 +2,13 @@ import React, { FC } from "react";
 import { Media, Poster, Tabs } from "@/components/movies";
 import { Biography, Filmography } from "./components";
 import Overview from "./components/tabs/overview/Overview";
+import { CelebrityProps } from "@/types/celebrities/CelebritiesTypes";
+import { MovieProps } from "@/types/movies/MoviesTypes";
+import { TvShowProps } from "@/types/movies/TvShowsTypes";
 
 interface DetailsCeleb {
-  //FIXME: fix any type
-  celebrity: any;
-  films: any;
+  celebrity: CelebrityProps;
+  films: MovieProps | TvShowProps;
 }
 const DetailsCeleb: FC<DetailsCeleb> = ({ celebrity, films }) => {
   const tabs = [

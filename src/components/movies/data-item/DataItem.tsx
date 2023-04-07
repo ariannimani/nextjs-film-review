@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React, { FC } from "react";
+import { CrewProps } from "@/types/movies/CommonTypes";
 
 interface DataItemProps {
-  //FIXME: fix any type
   title: string;
-  crew: any;
+  data: CrewProps[];
   category?: string;
 }
 const DataItem: FC<DataItemProps> = ({ title, data, category }) => {

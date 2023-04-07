@@ -8,7 +8,7 @@ import { truncateText } from "@/utils";
 interface OverviewProps {
   data: any;
   films: any;
-  setActiveTab: (tab: string) => {};
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Overview: FC<OverviewProps> = ({ data, setActiveTab }) => {
@@ -34,7 +34,7 @@ const Overview: FC<OverviewProps> = ({ data, setActiveTab }) => {
           {data.films &&
             data.films?.cast
               .slice(0, 8)
-              .map((cast) => (
+              .map((cast: any) => (
                 <CreditsItem
                   key={cast.id}
                   id={cast.id}

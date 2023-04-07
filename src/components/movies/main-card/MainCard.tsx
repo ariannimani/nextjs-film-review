@@ -51,7 +51,7 @@ const MainCard: FC<MainCardProps> = ({
           {!tab && (
             <div className="cate">
               {genre &&
-                genre.slice(0, 3).map((gen: any) => {
+                genre.slice(0, 3).map((gen) => {
                   const currentGenre = genres.filter((item) => item.id === gen);
                   return (
                     <span

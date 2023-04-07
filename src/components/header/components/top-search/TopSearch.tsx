@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import debounce from "lodash/debounce";
 import useSWR from "swr";
-import { Data, fetchData } from "@/pages/api/fetchData";
+import { fetchData } from "@/pages/api/fetchData";
 import Link from "next/link";
 import Image from "next/image";
 import { getInitials } from "@/utils";
+import { MovieProps, MovieResult } from "@/pages/movies/types";
+import { TvShowProps, TvShowsResult } from "@/pages/tv-shows/types";
+import { CelebritiesResult, CelebrityProps } from "@/pages/celebrities/types";
 
+type Data = MovieResult | TvShowsResult | CelebritiesResult;
 interface SearchProps {
   search: string;
   category: string;
@@ -34,6 +37,7 @@ const TopSearch: React.FC = () => {
     query: searchTerm.search,
     page: 1,
   };
+
   const { data, error, isLoading } = useSWR<Data, Error>(query, fetchData);
   const searchResults = data?.results;
 
@@ -75,7 +79,7 @@ const TopSearch: React.FC = () => {
                   searchTerm.category === "movies"
                     ? "movies"
                     : searchTerm.category === "tv"
-                    ? "tv"
+                    ? "tv-shows"
                     : "celebrities"
                 }/${result.id}`}
                 key={result.id}
@@ -90,9 +94,11 @@ const TopSearch: React.FC = () => {
                       height={100}
                     />
                   ) : (
-                    <h4 className="no-image">{getInitials(result.title)}</h4>
+                    <h4 className="no-image">
+                      {getInitials(result.title ? result.title : result.name)}
+                    </h4>
                   )}
-                  <li>{result.title}</li>
+                  <li>{result.title ? result.title : result.name}</li>
                 </div>
               </Link>
             ))}
