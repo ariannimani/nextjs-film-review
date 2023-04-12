@@ -7,8 +7,8 @@ export type UserProps = Prisma.UserGetPayload<typeof userProps>;
 export interface UserPropsWithoutId {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 const commentProps = Prisma.validator<Prisma.CommentArgs>()({});

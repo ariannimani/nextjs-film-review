@@ -12,7 +12,7 @@ export const comparePasswords = (
 ) => bcrypt.compare(plainTextPassword, hashedPassword);
 
 export const createJWT = (user: UserProps) => {
-  // return jwt.sign({ id: user.id }, 'cookies')
+  // return jwt.sign({ id: user.id }, "cookies");
   const iat = Math.floor(Date.now() / 1000);
   const exp = iat + 60 * 60 * 24 * 7;
 

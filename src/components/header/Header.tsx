@@ -1,8 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { TopSearch, MenuItem } from "@/components/header/components";
 import { SignIn, SignUp } from "../auth";
+import { getUserFromCookie } from "../../../lib/auth";
+import { User } from "@prisma/client";
+import { cookies } from "next/headers";
+
+type HeaderProps = {
+  user: User;
+};
 
 const titles = [
   { id: 1, name: "Home", link: "/" },
@@ -13,13 +20,21 @@ const titles = [
   { id: 6, name: "Profile", link: "/profile" },
 ];
 
-const Header = () => {
+export const getServerSideProps = async () => {
+  //FIXME: fix getUserFromCookie
+  // const user = await getUserFromCookie(cookies());
+  const user = "Yes";
+  return { props: { user } };
+};
+
+const Header: FC<HeaderProps> = ({ user }) => {
+  console.log({ user });
   const [authForm, setAuthForm] = useState("");
 
-  console.log({ authForm });
   const handleOutsideClickHandler = () => {
     setAuthForm("");
   };
+
   return (
     <>
       <header className="ht-header">

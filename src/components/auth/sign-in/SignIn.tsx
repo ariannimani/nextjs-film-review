@@ -1,13 +1,34 @@
 import { useOnClickOutside } from "@/hooks";
 
-import React, { FC, useRef } from "react";
+import React, { FC, useRef, useCallback } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { signIn } from "../../../../lib/api";
 
+type FormValues = {
+  email: string;
+  password: string;
+};
 interface SignInProps {
   onBlur: any;
 }
 const SignIn: FC<SignInProps> = ({ onBlur }) => {
   const ref = useRef(null);
   useOnClickOutside(ref, () => onBlur());
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    console.log(data);
+    try {
+      await signIn(data).then(() => onBlur());
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="login-wrapper" id="login-content" ref={ref}>
@@ -16,16 +37,15 @@ const SignIn: FC<SignInProps> = ({ onBlur }) => {
           x
         </a>
         <h3>Login</h3>
-        <form method="post" action="#">
+        <form method="post" onSubmit={handleSubmit(onSubmit)}>
           <div className="row">
             <label>
-              Username:
+              Email:
               <input
                 type="text"
-                name="username"
-                id="username"
-                placeholder="Hugh Jackman"
-                pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
+                id="email"
+                // pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$"
+                {...register("email")}
               />
             </label>
           </div>
@@ -35,10 +55,9 @@ const SignIn: FC<SignInProps> = ({ onBlur }) => {
               Password:
               <input
                 type="password"
-                name="password"
+                {...register("password")}
                 id="password"
-                placeholder="******"
-                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
               />
             </label>
           </div>
