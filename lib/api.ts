@@ -18,7 +18,6 @@ export const fetcher = async ({
     ...(body && { body: JSON.stringify(body) }),
     headers: { Accept: "application/json", "Content-type": "application/json" },
   });
-  console.log({ res, json });
   if (!res.ok) {
     throw new Error("Api Error");
   }

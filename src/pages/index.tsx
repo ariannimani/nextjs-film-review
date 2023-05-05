@@ -5,6 +5,8 @@ import { Items, Slider, Trailers, MainHead } from "@/components/movies";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setGenres } from "@/redux/slices/genresSlice";
+import { getUserFromCookie } from "../../lib/auth";
+import { cookies } from "next/headers";
 
 export interface Genres {
   genres: Genre[];
@@ -47,6 +49,8 @@ export const getServerSideProps: GetServerSideProps<{
   const urlGen = `https://api.themoviedb.org/3/genre/movie/list?api_key=b81c20b4ad589c35fcc33ec48b338339&language=en-US`;
   const responseGen = await fetch(urlGen);
   const genres: Genres = await responseGen.json();
+  const user = getUserFromCookie(cookies());
+  console.log({ user });
 
   return {
     props: {

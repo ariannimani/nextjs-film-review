@@ -22,7 +22,6 @@ const SignIn: FC<SignInProps> = ({ onBlur }) => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
     try {
       await signIn(data).then(() => onBlur());
     } catch (error) {

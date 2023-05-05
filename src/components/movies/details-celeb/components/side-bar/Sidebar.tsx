@@ -5,7 +5,6 @@ interface SideBarProps {
   data: any;
 }
 const SideBar: FC<SideBarProps> = ({ data }) => {
-  console.log({ data });
   return (
     <div className="col-md-4 col-xs-12 col-sm-12">
       <div className="sb-it">

@@ -22,7 +22,6 @@ const Celebrities = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [perPageNumber, setPerPageNumber] = useState(1);
   const celebrities = data.results;
-  console.log(celebrities);
   return (
     <>
       <Header />

@@ -2,6 +2,10 @@ import bcrypt from "bcrypt";
 import { SignJWT, jwtVerify } from "jose";
 import { db } from "./db";
 import { UserProps } from "./types";
+import { IncomingMessage } from "http";
+import { NextApiRequestCookies } from "next/dist/server/api-utils";
+import { User } from "@prisma/client";
+import jwt from "jsonwebtoken";
 
 export const hashPassword = (password: string | Buffer) =>
   bcrypt.hash(password, 10);

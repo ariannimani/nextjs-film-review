@@ -28,7 +28,6 @@ const CelebrityDetails = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const { id } = router.query;
-  console.log(celebrity, films);
   return (
     <div>
       <Header />

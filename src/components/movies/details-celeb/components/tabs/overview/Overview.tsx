@@ -41,7 +41,7 @@ const Overview: FC<OverviewProps> = ({ data, setActiveTab }) => {
                   image={cast.poster_path}
                   name={cast.title}
                   description={cast.character}
-                  category={"celebrities"}
+                  category={"movies"}
                 />
               ))}
         </div>

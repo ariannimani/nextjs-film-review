@@ -15,7 +15,6 @@ interface OverviewTabProps {
 }
 
 const OverviewTab: FC<OverviewTabProps> = ({ data, setActiveTab }) => {
-  console.log(typeof setActiveTab);
   return (
     <div id="overview" className="tab active">
       <div className="row">

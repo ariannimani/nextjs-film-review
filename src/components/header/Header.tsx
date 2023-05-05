@@ -8,7 +8,7 @@ import { User } from "@prisma/client";
 import { cookies } from "next/headers";
 
 type HeaderProps = {
-  user: User;
+  user?: User;
 };
 
 const titles = [
@@ -20,12 +20,12 @@ const titles = [
   { id: 6, name: "Profile", link: "/profile" },
 ];
 
-export const getServerSideProps = async () => {
-  //FIXME: fix getUserFromCookie
-  // const user = await getUserFromCookie(cookies());
-  const user = "Yes";
-  return { props: { user } };
-};
+// export const getServerSideProps = async () => {
+//   //FIXME: fix getUserFromCookie
+//   // const user = await getUserFromCookie(cookies());
+//   const user = "Yes";
+//   return { props: { user } };
+// };
 
 const Header: FC<HeaderProps> = ({ user }) => {
   console.log({ user });

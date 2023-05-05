@@ -23,7 +23,6 @@ const SignUp: FC<SignUpProps> = ({ onBlur }) => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log({ data });
     try {
       await signUp(data).then(() => onBlur());
     } catch (error) {
